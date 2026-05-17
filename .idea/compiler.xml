@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="auth-service" />
+        <module name="game-service" />
+        <module name="community-service" />
+        <module name="forum-service" />
+        <module name="gateway-service" />
+        <module name="search-service" />
+        <module name="chat-service" />
+        <module name="profile-service" />
+        <module name="user-service" />
+        <module name="collectible-service" />
+        <module name="discovery-service" />
+        <module name="notification-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="playgg" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="auth-service" options="-parameters" />
+      <module name="chat-service" options="-parameters" />
+      <module name="collectible-service" options="-parameters" />
+      <module name="community-service" options="-parameters" />
+      <module name="discovery-service" options="-parameters" />
+      <module name="forum-service" options="-parameters" />
+      <module name="game-service" options="-parameters" />
+      <module name="gateway-service" options="-parameters" />
+      <module name="notification-service" options="-parameters" />
+      <module name="playgg" options="-parameters" />
+      <module name="profile-service" options="-parameters" />
+      <module name="search-service" options="-parameters" />
+      <module name="user-service" options="-parameters" />
+    </option>
+  </component>
+</project>

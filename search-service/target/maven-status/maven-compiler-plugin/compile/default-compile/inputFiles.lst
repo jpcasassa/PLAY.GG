@@ -1,0 +1,17 @@
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\client\CommunityClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\client\ForumClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\client\GameClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\client\UserClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\config\FeignConfig.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\controller\SearchHistoryController.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\dto\CreateSearchHistoryDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\dto\SearchHistoryResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\dto\UpdateSearchHistoryDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\exception\ApiError.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\exception\GlobalExceptionHandler.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\exception\ResourceNotFoundException.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\model\SearchHistory.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\repository\SearchHistoryRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\SearchServiceApplication.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\service\SearchHistoryService.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\search-service\src\main\java\com\playgg\search\util\DateUtil.java

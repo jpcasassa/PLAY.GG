@@ -1,0 +1,15 @@
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\ChatServiceApplication.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\client\NotificationClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\client\UserClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\config\FeignConfig.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\controller\MessageController.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\dto\CreateMessageDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\dto\MessageResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\dto\UpdateMessageDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\exception\ApiError.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\exception\GlobalExceptionHandler.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\exception\ResourceNotFoundException.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\model\Message.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\repository\MessageRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\service\MessageService.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\chat-service\src\main\java\com\playgg\chat\util\DateUtil.java

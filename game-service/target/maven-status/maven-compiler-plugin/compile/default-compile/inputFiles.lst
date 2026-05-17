@@ -1,0 +1,13 @@
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\config\FeignConfig.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\controller\GameController.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\dto\CreateGameDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\dto\GameResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\dto\UpdateGameDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\exception\ApiError.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\exception\GlobalExceptionHandler.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\exception\ResourceNotFoundException.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\GameServiceApplication.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\model\Game.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\repository\GameRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\service\GameService.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\game-service\src\main\java\com\playgg\game\util\DateUtil.java
