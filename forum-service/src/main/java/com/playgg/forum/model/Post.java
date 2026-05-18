@@ -35,6 +35,7 @@ public class Post {
   private LocalDateTime updatedAt;
 
   // Relacion JPA interna para modelar composicion dentro del mismo servicio.
+  @Builder.Default
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 }

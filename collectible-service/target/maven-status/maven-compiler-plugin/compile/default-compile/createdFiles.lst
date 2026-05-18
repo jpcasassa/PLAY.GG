@@ -1,11 +1,9 @@
 com\playgg\collectible\dto\CollectibleResponseDTO.class
-com\playgg\collectible\config\FeignConfig.class
 com\playgg\collectible\exception\ResourceNotFoundException.class
 com\playgg\collectible\dto\CreateCollectibleDTO.class
 com\playgg\collectible\client\GameClient.class
 com\playgg\collectible\client\UserClient.class
 com\playgg\collectible\model\Rarity.class
-com\playgg\collectible\util\DateUtil.class
 com\playgg\collectible\CollectibleServiceApplication.class
 com\playgg\collectible\dto\CollectibleResponseDTO$CollectibleResponseDTOBuilder.class
 com\playgg\collectible\exception\GlobalExceptionHandler.class

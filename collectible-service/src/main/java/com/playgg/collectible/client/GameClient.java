@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/** Cliente Feign hacia game-service. */
+/** Feign consulta game-service por id; collectible guarda solo gameId. */
 @FeignClient(name = "game-service")
 public interface GameClient {
 

@@ -1,10 +1,11 @@
 package com.playgg.chat.service;
 
+import com.playgg.chat.client.UserClient;
 import com.playgg.chat.dto.*;
 import com.playgg.chat.exception.ResourceNotFoundException;
 import com.playgg.chat.model.*;
 import com.playgg.chat.repository.MessageRepository;
-import com.playgg.chat.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -16,14 +17,16 @@ import org.springframework.stereotype.Service;
 public class MessageService {
   private static final Logger logger = LoggerFactory.getLogger(MessageService.class);
   private final MessageRepository repository;
+  private final UserClient userClient;
 
   public MessageResponseDTO create(CreateMessageDTO dto) {
+    validateUsers(dto.getSenderId(), dto.getReceiverId());
     Message e = new Message();
     e.setSenderId(dto.getSenderId());
     e.setReceiverId(dto.getReceiverId());
     e.setContent(dto.getContent());
     e.setRead(dto.getRead());
-    e.setSentAt(DateUtil.now());
+    e.setSentAt(LocalDateTime.now());
     e.setRead(false);
     logger.info("Creando Message");
     return toResponse(repository.save(e));
@@ -40,6 +43,7 @@ public class MessageService {
 
   public MessageResponseDTO update(Long id, UpdateMessageDTO dto) {
     Message e = get(id);
+    validateUsers(dto.getSenderId(), dto.getReceiverId());
     e.setSenderId(dto.getSenderId());
     e.setReceiverId(dto.getReceiverId());
     e.setContent(dto.getContent());
@@ -51,6 +55,11 @@ public class MessageService {
   public void delete(Long id) {
     repository.delete(get(id));
     logger.info("Eliminando Message {}", id);
+  }
+
+  private void validateUsers(Long senderId, Long receiverId) {
+    userClient.findById(senderId);
+    userClient.findById(receiverId);
   }
 
   private Message get(Long id) {

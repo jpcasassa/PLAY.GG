@@ -4,7 +4,7 @@ import com.playgg.user.dto.*;
 import com.playgg.user.exception.ResourceNotFoundException;
 import com.playgg.user.model.*;
 import com.playgg.user.repository.UserRepository;
-import com.playgg.user.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -31,7 +31,7 @@ public class UserService {
     e.setCountry(dto.getCountry());
     e.setRole(dto.getRole());
     e.setActive(dto.getActive());
-    e.setCreatedAt(DateUtil.now());
+    e.setCreatedAt(LocalDateTime.now());
     e.setActive(true);
     logger.info("Creando User");
     return toResponse(repository.save(e));
@@ -88,7 +88,7 @@ public class UserService {
     e.setCountry(dto.getCountry());
     e.setRole(dto.getRole());
     e.setActive(dto.getActive());
-    e.setUpdatedAt(DateUtil.now());
+    e.setUpdatedAt(LocalDateTime.now());
     logger.info("Actualizando User {}", id);
     return toResponse(repository.save(e));
   }

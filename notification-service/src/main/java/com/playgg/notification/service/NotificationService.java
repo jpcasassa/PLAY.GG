@@ -1,10 +1,11 @@
 package com.playgg.notification.service;
 
+import com.playgg.notification.client.UserClient;
 import com.playgg.notification.dto.*;
 import com.playgg.notification.exception.ResourceNotFoundException;
 import com.playgg.notification.model.*;
 import com.playgg.notification.repository.NotificationRepository;
-import com.playgg.notification.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -16,15 +17,17 @@ import org.springframework.stereotype.Service;
 public class NotificationService {
   private static final Logger logger = LoggerFactory.getLogger(NotificationService.class);
   private final NotificationRepository repository;
+  private final UserClient userClient;
 
   public NotificationResponseDTO create(CreateNotificationDTO dto) {
+    userClient.findById(dto.getUserId());
     Notification e = new Notification();
     e.setUserId(dto.getUserId());
     e.setTitle(dto.getTitle());
     e.setMessage(dto.getMessage());
     e.setType(dto.getType());
     e.setRead(dto.getRead());
-    e.setCreatedAt(DateUtil.now());
+    e.setCreatedAt(LocalDateTime.now());
     e.setRead(false);
     logger.info("Creando Notification");
     return toResponse(repository.save(e));
@@ -41,6 +44,7 @@ public class NotificationService {
 
   public NotificationResponseDTO update(Long id, UpdateNotificationDTO dto) {
     Notification e = get(id);
+    userClient.findById(dto.getUserId());
     e.setUserId(dto.getUserId());
     e.setTitle(dto.getTitle());
     e.setMessage(dto.getMessage());

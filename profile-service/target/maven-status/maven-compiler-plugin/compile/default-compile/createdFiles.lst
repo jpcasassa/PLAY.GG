@@ -2,13 +2,11 @@ com\playgg\profile\model\Profile$ProfileBuilder.class
 com\playgg\profile\client\GameClient.class
 com\playgg\profile\exception\GlobalExceptionHandler.class
 com\playgg\profile\dto\UpdateProfileDTO.class
-com\playgg\profile\config\FeignConfig.class
 com\playgg\profile\controller\ProfileController.class
 com\playgg\profile\service\ProfileService.class
 com\playgg\profile\model\Profile.class
 com\playgg\profile\client\UserClient.class
 com\playgg\profile\exception\ResourceNotFoundException.class
-com\playgg\profile\util\DateUtil.class
 com\playgg\profile\dto\CreateProfileDTO.class
 com\playgg\profile\dto\ProfileResponseDTO.class
 com\playgg\profile\dto\ProfileResponseDTO$ProfileResponseDTOBuilder.class

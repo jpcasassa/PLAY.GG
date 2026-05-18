@@ -1,10 +1,11 @@
 package com.playgg.forum.service;
 
+import com.playgg.forum.client.UserClient;
 import com.playgg.forum.dto.*;
 import com.playgg.forum.exception.ResourceNotFoundException;
 import com.playgg.forum.model.*;
 import com.playgg.forum.repository.*;
-import com.playgg.forum.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -16,6 +17,7 @@ public class CommentService {
   private static final Logger logger = LoggerFactory.getLogger(CommentService.class);
   private final CommentRepository commentRepository;
   private final PostRepository postRepository;
+  private final UserClient userClient;
 
   public CommentResponseDTO create(CreateCommentDTO dto) {
     Post p =
@@ -24,11 +26,12 @@ public class CommentService {
             .orElseThrow(
                 () ->
                     new ResourceNotFoundException("Post no encontrado con id: " + dto.getPostId()));
+    userClient.findById(dto.getUserId());
     Comment c = new Comment();
     c.setPost(p);
     c.setUserId(dto.getUserId());
     c.setContent(dto.getContent());
-    c.setCreatedAt(DateUtil.now());
+    c.setCreatedAt(LocalDateTime.now());
     logger.info("Creando comentario en post {}", dto.getPostId());
     return toResponse(commentRepository.save(c));
   }

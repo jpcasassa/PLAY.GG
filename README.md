@@ -1,72 +1,114 @@
 # PLAY.GG Microservices
 
-Proyecto academico de arquitectura de microservicios para una plataforma gamer/social. Esta version busca ser limpia, modular y facil de entender.
+PLAY.GG es una plataforma gamer/social construida como proyecto universitario de microservicios con Spring Boot. La idea es separar responsabilidades por dominio: usuarios, autenticacion, perfiles, foro, comunidades, chat, notificaciones, juegos y coleccionables.
 
-## Arquitectura
+El objetivo de esta version es ser clara, defendible y facil de recorrer. No usa tecnologias de infraestructura avanzada como Kafka, RabbitMQ, Kubernetes, Redis, WebSockets ni Docker complejo.
 
-Se usa Maven Multi-Module con un POM padre que centraliza Java 21, Spring Boot 3 y Spring Cloud. Cada servicio mantiene arquitectura CSR: Controller recibe HTTP, Service aplica reglas de negocio y Repository accede a MySQL con JPA.
+## Arquitectura general
 
-Los DTOs separan la API de las entidades JPA. El flujo principal es Controller -> Service -> Repository, manteniendo responsabilidades claras.
+El proyecto usa Maven Multi-Module. El `pom.xml` padre centraliza Java 21, Spring Boot 3 y Spring Cloud para que todos los servicios trabajen con versiones coherentes.
+
+Cada microservicio de dominio sigue una arquitectura CSR simple:
+
+```text
+controller -> service -> repository
+```
+
+- `controller`: recibe peticiones HTTP y valida DTOs de entrada.
+- `service`: contiene reglas de negocio, validaciones y conversion entre entidades y DTOs.
+- `repository`: accede a MySQL mediante Spring Data JPA.
+- `model`: define entidades JPA propias del microservicio.
+- `dto`: define datos de entrada y salida sin exponer directamente las entidades.
+- `exception`: centraliza errores comunes de la API.
+- `client`: aparece solo en servicios que consultan otro microservicio con OpenFeign.
+- `config`: aparece solo cuando el servicio necesita configuracion real, como seguridad en `auth-service`.
 
 ## Microservicios
 
-| Servicio | Puerto | Responsabilidad |
+| Servicio | Puerto | Responsabilidad principal |
 | --- | ---: | --- |
-| [discovery-service](discovery-service/README.md) | 8761 | Eureka Server |
-| [gateway-service](gateway-service/README.md) | 8080 | API Gateway |
-| [user-service](user-service/README.md) | 8081 | Usuarios |
-| [auth-service](auth-service/README.md) | 8082 | JWT y sesiones |
-| [profile-service](profile-service/README.md) | 8083 | Perfil gamer/social |
-| [forum-service](forum-service/README.md) | 8084 | Posts y comentarios |
-| [community-service](community-service/README.md) | 8085 | Comunidades y miembros |
-| [chat-service](chat-service/README.md) | 8086 | Mensajes privados |
-| [notification-service](notification-service/README.md) | 8087 | Notificaciones |
-| [game-service](game-service/README.md) | 8088 | Catalogo de juegos |
-| [collectible-service](collectible-service/README.md) | 8089 | Logros y trofeos |
-| [search-service](search-service/README.md) | 8090 | Historial de busquedas |
+| `discovery-service` | 8761 | Registro Eureka de servicios |
+| `gateway-service` | 8080 | Entrada unica a la API usando Spring Cloud Gateway |
+| `user-service` | 8081 | Usuarios, datos de cuenta y datos internos para autenticacion |
+| `auth-service` | 8082 | Registro, login, JWT, refresh token y logout |
+| `profile-service` | 8083 | Perfil gamer/social del usuario |
+| `forum-service` | 8084 | Posts y comentarios |
+| `community-service` | 8085 | Comunidades y miembros |
+| `chat-service` | 8086 | Mensajes privados simples |
+| `notification-service` | 8087 | Notificaciones de usuario |
+| `game-service` | 8088 | Catalogo de juegos |
+| `collectible-service` | 8089 | Logros, trofeos o coleccionables |
 
-Cada microservicio tiene su propio README con explicacion de utilidad, datos que maneja, endpoints y puntos de apoyo.
+El modulo de busquedas fue retirado para mantener la arquitectura mas simple y enfocada en los dominios principales del sistema.
 
-## Tecnologias
+## Comunicacion entre servicios
 
-Java 21, Spring Boot 3, Maven, Spring Cloud, Eureka, Spring Cloud Gateway, OpenFeign, MySQL, JPA/Hibernate, Bean Validation, Lombok, SLF4J y JWT.
+La comunicacion se mantiene reducida. Los servicios no se conectan todos contra todos.
 
-## Seguridad
+| Servicio origen | Consulta permitida |
+| --- | --- |
+| `auth-service` | `user-service` |
+| `profile-service` | `user-service`, `game-service` |
+| `forum-service` | `user-service` |
+| `community-service` | `user-service` |
+| `chat-service` | `user-service` |
+| `notification-service` | `user-service` |
+| `collectible-service` | `user-service`, `game-service` |
 
-`auth-service` incluye Spring Security con autenticacion HTTP Basic simple para demostrar proteccion de endpoints.
+Los microservicios no tienen relaciones JPA entre bases distintas. Por ejemplo, un post guarda `userId`, un perfil guarda `userId` y `favoriteGameId`, y un coleccionable guarda `userId` y `gameId`. Si se necesita comprobar que esos ids existen, se consulta al servicio correspondiente mediante Feign.
 
-- `/auth/register` y `/auth/login` son publicos.
-- Los otros endpoints de `auth-service` requieren Basic Auth.
-- Usuario de prueba: `admin`
-- Password de prueba: `admin123`
+Las relaciones JPA se usan solo dentro del mismo microservicio. Ejemplos:
 
-Esta  configuracion es intencionalmente simple. Sirve para explicar el concepto de autenticacion basica sin agregar complejidad innecesaria.
+- `Post -> Comment` dentro de `forum-service`.
+- `Community -> CommunityMember` dentro de `community-service`.
 
-## Ejecucion
+## Tecnologias utilizadas
 
-1. Ajustar usuario/password de MySQL en cada application.yml si corresponde.
-2. Compilar: `mvn clean package -DskipTests`.
-3. Levantar primero `discovery-service`, luego `gateway-service` y despues los servicios de dominio.
+- Java 21
+- Spring Boot 3
+- Spring Cloud
+- Eureka Discovery Server
+- Spring Cloud Gateway
+- OpenFeign
+- Spring Security en `auth-service`
+- JWT con JJWT
+- Spring Data JPA / Hibernate
+- MySQL
+- Bean Validation
+- Lombok
+- Maven Multi-Module
 
-```bash
-mvn -pl discovery-service spring-boot:run
-mvn -pl gateway-service spring-boot:run
-mvn -pl user-service spring-boot:run
+## Eureka y Gateway
+
+Eureka funciona como registro de servicios. Cada microservicio se registra con su nombre, por ejemplo `user-service` o `forum-service`. Esto permite que otros servicios los encuentren por nombre sin depender de una URL fija.
+
+Gateway es la puerta de entrada de la API. En vez de llamar directamente a cada puerto, el cliente puede entrar por `http://localhost:8080` y Gateway redirige al microservicio correcto usando Eureka.
+
+## Feign
+
+OpenFeign permite declarar clientes HTTP con interfaces Java. En este proyecto se usa para consultas simples entre servicios, principalmente para validar que un `userId` o `gameId` exista.
+
+Ejemplo conceptual:
+
+```java
+@FeignClient(name = "user-service")
+public interface UserClient {
+  @GetMapping("/users/{id}")
+  ResponseEntity<Object> findById(@PathVariable Long id);
+}
 ```
 
-## Conexion a base de datos con XAMPP
+Feign se usa solo donde aporta claridad. Los servicios que no consultan otros microservicios no tienen dependencia de OpenFeign.
 
-Lo importante es usar el modulo MySQL/MariaDB que viene con XAMPP y configurar los `application.yml` de cada microservicio.
+## JWT
 
-Pasos recomendados:
+`auth-service` genera tokens JWT al registrar o iniciar sesion. El token contiene datos basicos como id de usuario, email y rol. Tambien se guarda una sesion en MySQL para poder manejar refresh token y logout.
 
-1. Abrir XAMPP Control Panel.
-2. Iniciar `MySQL`.
-3. Entrar a phpMyAdmin: `http://localhost/phpmyadmin`.
-4. Crear las bases de datos o dejar que Spring las cree si el usuario tiene permisos.
-5. Revisar usuario y password en cada `application.yml`.
+Esta implementacion es simple y pensada para el contexto universitario: demuestra autenticacion, tokens y sesiones sin entrar en OAuth ni configuraciones empresariales complejas.
 
-Bases de datos usadas por el proyecto:
+## Bases de datos
+
+Cada microservicio de dominio usa su propia base de datos MySQL. Con XAMPP se puede iniciar MySQL/MariaDB y crear las bases desde phpMyAdmin, o dejar que Spring las cree si el usuario tiene permisos.
 
 ```sql
 CREATE DATABASE IF NOT EXISTS playgg_users_db;
@@ -78,60 +120,71 @@ CREATE DATABASE IF NOT EXISTS playgg_chat_db;
 CREATE DATABASE IF NOT EXISTS playgg_notifications_db;
 CREATE DATABASE IF NOT EXISTS playgg_games_db;
 CREATE DATABASE IF NOT EXISTS playgg_collectibles_db;
-CREATE DATABASE IF NOT EXISTS playgg_search_db;
 ```
 
-Configuracion usada en los servicios:
+Si tu MySQL usa password, ajusta `spring.datasource.password` en el `application.yml` de cada servicio.
 
-```yml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/nombre_de_la_base?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
-    username: root
-    password:
+## Estructura del proyecto
+
+```text
+PLAY.GG/
+|-- pom.xml
+|-- discovery-service/
+|-- gateway-service/
+|-- user-service/
+|-- auth-service/
+|-- profile-service/
+|-- forum-service/
+|-- community-service/
+|-- chat-service/
+|-- notification-service/
+|-- game-service/
+|-- collectible-service/
 ```
 
-En XAMPP normalmente el usuario es `root` y la password viene vacia. Si configuraste password en MySQL, debes escribirla en `password`.
+Estructura base de un microservicio de dominio:
 
-Archivos que se editan para cambiar la conexion:
+```text
+src/main/java/com/playgg/[servicio]/
+|-- controller
+|-- service
+|-- repository
+|-- model
+|-- dto
+|-- exception
+|-- client     # solo si consume otro servicio con Feign
+|-- config     # solo si necesita configuracion propia
+```
 
-- `user-service/src/main/resources/application.yml`
-- `auth-service/src/main/resources/application.yml`
-- `profile-service/src/main/resources/application.yml`
-- `forum-service/src/main/resources/application.yml`
-- `community-service/src/main/resources/application.yml`
-- `chat-service/src/main/resources/application.yml`
-- `notification-service/src/main/resources/application.yml`
-- `game-service/src/main/resources/application.yml`
-- `collectible-service/src/main/resources/application.yml`
-- `search-service/src/main/resources/application.yml`
+## Como ejecutar
 
-`discovery-service` y `gateway-service` no usan MySQL.
+1. Iniciar MySQL desde XAMPP.
+2. Verificar usuario y password en los `application.yml`.
+3. Compilar el proyecto completo:
 
-Orden recomendado para levantar el sistema:
+```bash
+mvn clean package -DskipTests
+```
 
-1. `discovery-service`
-2. `gateway-service`
-3. `user-service`
-4. `game-service`
-5. `auth-service`
-6. Los demas servicios segun lo que se quiera probar
-
-Ejemplo:
+4. Levantar primero Eureka:
 
 ```bash
 mvn -pl discovery-service spring-boot:run
-mvn -pl gateway-service spring-boot:run
-mvn -pl user-service spring-boot:run
 ```
 
-Si un servicio falla al iniciar por base de datos, revisar:
+5. Levantar Gateway:
 
-- Que MySQL de XAMPP este iniciado.
-- Que el puerto `3306` no este ocupado por otro MySQL.
-- Que la base de datos exista.
-- Que usuario y password coincidan.
-- Que el nombre de la base en la URL sea correcto.
+```bash
+mvn -pl gateway-service spring-boot:run
+```
+
+6. Levantar los servicios de dominio que se quieran probar:
+
+```bash
+mvn -pl user-service spring-boot:run
+mvn -pl auth-service spring-boot:run
+mvn -pl game-service spring-boot:run
+```
 
 ## Endpoints principales
 
@@ -140,69 +193,29 @@ Si un servicio falla al iniciar por base de datos, revisar:
 - `GET /users/{id}`
 - `GET /users/nickname/{nickname}`
 - `GET /users/email/{email}`
-- `POST /auth/login`
+- `GET /users/internal/auth/email/{email}`
 - `POST /auth/register`
+- `POST /auth/login`
+- `POST /auth/refresh`
+- `POST /auth/logout`
 - `POST /profiles`
 - `POST /posts`
 - `POST /comments`
+- `POST /communities`
 - `POST /communities/{id}/members`
+- `POST /messages`
+- `POST /notifications`
 - `POST /games`
+- `POST /collectibles`
 
-## Regla importante
+## Ideas para defensa tecnica
 
-No hay relaciones JPA entre microservicios. `profile-service` guarda `userId` y `favoriteGameId`, y consulta datos externos via Feign cuando lo necesite. Esto conserva independencia por base de datos.
-
-## Estructura interna
-
-```text
-src/main/java/com/playgg/[servicio]
-|-- controller
-|-- service
-|-- repository
-|-- model
-|-- dto
-|-- config
-|-- client
-|-- exception
-|-- util
-```
-
-Esta estructura facilita explicar separacion de responsabilidades y el flujo Controller -> Service -> Repository.
-
-## Como leer el codigo
-
-Cada microservicio tiene su propio README con una guia especifica. Aun asi, la lectura general es la misma:
-
-1. Abrir el `README.md` del microservicio.
-2. Revisar `application.yml` para ver puerto, nombre del servicio, Eureka y base de datos.
-3. Entrar al `controller` para ver los endpoints disponibles.
-4. Seguir hacia `service` para entender la logica.
-5. Revisar `repository` para ver como se accede a MySQL.
-6. Revisar `model` para ver que campos se guardan.
-7. Revisar `dto` para ver que datos entran y salen por la API.
-8. Revisar `client` si el servicio se comunica con otros microservicios mediante Feign.
-
-Donde editar segun lo que se quiera cambiar:
-
-- Cambiar un endpoint: `controller`.
-- Cambiar una validacion o regla de negocio: `service` o `dto`.
-- Cambiar una tabla o campo guardado: `model`, `dto` y `service`.
-- Cambiar una consulta de base de datos: `repository`.
-- Cambiar conexion MySQL: `application.yml`.
-- Cambiar comunicacion entre microservicios: `client`.
-- Cambiar manejo de errores: `exception/GlobalExceptionHandler.java`.
-- Cambiar seguridad basica: `auth-service/src/main/java/com/playgg/auth/config/SecurityConfig.java`.
-
-## Apoyo para defensa
-
-Ideas clave para explicar el proyecto:
-
-- El sistema esta separado por dominios: usuarios, autenticacion, perfiles, foro, comunidades, chat, notificaciones, juegos, coleccionables y busqueda.
-- Cada microservicio tiene su propia base de datos para reducir acoplamiento.
-- No se crean relaciones JPA entre servicios. Se guardan ids como `userId` o `gameId` y, cuando se necesita mas informacion, se consulta con Feign.
+- El sistema se divide por dominios para que cada servicio tenga una responsabilidad clara.
 - Eureka permite descubrir servicios por nombre.
 - Gateway centraliza el acceso externo.
-- DTOs separan los datos de entrada/salida de las entidades internas.
-- `@ControllerAdvice` centraliza errores y evita repetir manejo de excepciones.
-- Spring Security en `auth-service` demuestra autenticacion basica con HTTP Basic.
-- Es una version universitaria funcional y preparada para crecer, sin agregar tecnologias innecesarias como Kafka, RabbitMQ, Kubernetes o WebSockets.
+- Controller, Service y Repository separan entrada HTTP, reglas de negocio y persistencia.
+- Los DTOs evitan exponer entidades JPA directamente.
+- Feign se usa solo para validar datos externos necesarios.
+- No hay relaciones JPA entre microservicios; solo ids como `userId`, `gameId` o `postId`.
+- Las relaciones JPA locales se mantienen donde ayudan a representar el dominio.
+- JWT se concentra en `auth-service`, por lo que la autenticacion no queda repartida por todo el proyecto.

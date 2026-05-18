@@ -1,10 +1,11 @@
 package com.playgg.forum.service;
 
+import com.playgg.forum.client.UserClient;
 import com.playgg.forum.dto.*;
 import com.playgg.forum.exception.ResourceNotFoundException;
 import com.playgg.forum.model.Post;
 import com.playgg.forum.repository.PostRepository;
-import com.playgg.forum.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -16,15 +17,17 @@ import org.springframework.stereotype.Service;
 public class PostService {
   private static final Logger logger = LoggerFactory.getLogger(PostService.class);
   private final PostRepository repository;
+  private final UserClient userClient;
 
   public PostResponseDTO create(CreatePostDTO dto) {
+    userClient.findById(dto.getUserId());
     Post e = new Post();
     e.setUserId(dto.getUserId());
     e.setTitle(dto.getTitle());
     e.setContent(dto.getContent());
     e.setCategory(dto.getCategory());
     e.setLikes(0);
-    e.setCreatedAt(DateUtil.now());
+    e.setCreatedAt(LocalDateTime.now());
     logger.info("Creando post");
     return toResponse(repository.save(e));
   }
@@ -42,7 +45,7 @@ public class PostService {
     e.setTitle(dto.getTitle());
     e.setContent(dto.getContent());
     e.setCategory(dto.getCategory());
-    e.setUpdatedAt(DateUtil.now());
+    e.setUpdatedAt(LocalDateTime.now());
     logger.info("Actualizando post {}", id);
     return toResponse(repository.save(e));
   }

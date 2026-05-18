@@ -1,10 +1,11 @@
 package com.playgg.community.service;
 
+import com.playgg.community.client.UserClient;
 import com.playgg.community.dto.*;
 import com.playgg.community.exception.ResourceNotFoundException;
 import com.playgg.community.model.*;
 import com.playgg.community.repository.*;
-import com.playgg.community.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -16,16 +17,18 @@ public class CommunityService {
   private static final Logger logger = LoggerFactory.getLogger(CommunityService.class);
   private final CommunityRepository repository;
   private final CommunityMemberRepository memberRepository;
+  private final UserClient userClient;
 
   public CommunityResponseDTO create(CreateCommunityDTO dto) {
     if (repository.existsByName(dto.getName()))
       throw new IllegalArgumentException("Nombre de comunidad ya existe");
+    userClient.findById(dto.getOwnerId());
     Community c = new Community();
     c.setOwnerId(dto.getOwnerId());
     c.setName(dto.getName());
     c.setDescription(dto.getDescription());
     c.setBannerUrl(dto.getBannerUrl());
-    c.setCreatedAt(DateUtil.now());
+    c.setCreatedAt(LocalDateTime.now());
     c.setActive(true);
     Community saved = repository.save(c);
     addMember(saved.getCommunityId(), ownerDto(dto.getOwnerId()));
@@ -64,11 +67,12 @@ public class CommunityService {
 
   public CommunityMemberResponseDTO addMember(Long id, AddMemberDTO dto) {
     Community c = get(id);
+    userClient.findById(dto.getUserId());
     CommunityMember m = new CommunityMember();
     m.setCommunity(c);
     m.setUserId(dto.getUserId());
     m.setRole(dto.getRole() == null ? CommunityRole.MEMBER : dto.getRole());
-    m.setJoinedAt(DateUtil.now());
+    m.setJoinedAt(LocalDateTime.now());
     return toMember(memberRepository.save(m));
   }
 

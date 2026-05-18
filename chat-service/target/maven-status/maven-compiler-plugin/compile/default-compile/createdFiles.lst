@@ -2,12 +2,9 @@ com\playgg\chat\dto\MessageResponseDTO.class
 com\playgg\chat\model\Message$MessageBuilder.class
 com\playgg\chat\repository\MessageRepository.class
 com\playgg\chat\dto\UpdateMessageDTO.class
-com\playgg\chat\client\NotificationClient.class
 com\playgg\chat\controller\MessageController.class
 com\playgg\chat\model\Message.class
-com\playgg\chat\config\FeignConfig.class
 com\playgg\chat\service\MessageService.class
-com\playgg\chat\util\DateUtil.class
 com\playgg\chat\exception\GlobalExceptionHandler.class
 com\playgg\chat\exception\ResourceNotFoundException.class
 com\playgg\chat\dto\CreateMessageDTO.class

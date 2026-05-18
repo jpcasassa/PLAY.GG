@@ -1,6 +1,4 @@
 com\playgg\user\exception\ResourceNotFoundException.class
-com\playgg\user\util\DateUtil.class
-com\playgg\user\config\FeignConfig.class
 com\playgg\user\service\UserService.class
 com\playgg\user\controller\UserController.class
 com\playgg\user\dto\UserAuthDTO$UserAuthDTOBuilder.class

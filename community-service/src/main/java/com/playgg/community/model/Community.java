@@ -34,6 +34,7 @@ public class Community {
   private Boolean active;
 
   // Relacion JPA interna para modelar composicion dentro del mismo servicio.
+  @Builder.Default
   @OneToMany(mappedBy = "community", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<CommunityMember> members = new ArrayList<>();
 }

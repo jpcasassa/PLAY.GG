@@ -1,10 +1,12 @@
 package com.playgg.profile.service;
 
+import com.playgg.profile.client.GameClient;
+import com.playgg.profile.client.UserClient;
 import com.playgg.profile.dto.*;
 import com.playgg.profile.exception.ResourceNotFoundException;
 import com.playgg.profile.model.*;
 import com.playgg.profile.repository.ProfileRepository;
-import com.playgg.profile.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -16,8 +18,11 @@ import org.springframework.stereotype.Service;
 public class ProfileService {
   private static final Logger logger = LoggerFactory.getLogger(ProfileService.class);
   private final ProfileRepository repository;
+  private final UserClient userClient;
+  private final GameClient gameClient;
 
   public ProfileResponseDTO create(CreateProfileDTO dto) {
+    validateExternalIds(dto.getUserId(), dto.getFavoriteGameId());
     Profile e = new Profile();
     e.setUserId(dto.getUserId());
     e.setAvatarUrl(dto.getAvatarUrl());
@@ -28,7 +33,7 @@ public class ProfileService {
     e.setFavoriteGameId(dto.getFavoriteGameId());
     e.setRank(dto.getRank());
     e.setLevel(dto.getLevel());
-    e.setCreatedAt(DateUtil.now());
+    e.setCreatedAt(LocalDateTime.now());
     logger.info("Creando Profile");
     return toResponse(repository.save(e));
   }
@@ -44,6 +49,7 @@ public class ProfileService {
 
   public ProfileResponseDTO update(Long id, UpdateProfileDTO dto) {
     Profile e = get(id);
+    validateExternalIds(dto.getUserId(), dto.getFavoriteGameId());
     e.setUserId(dto.getUserId());
     e.setAvatarUrl(dto.getAvatarUrl());
     e.setBannerUrl(dto.getBannerUrl());
@@ -53,7 +59,7 @@ public class ProfileService {
     e.setFavoriteGameId(dto.getFavoriteGameId());
     e.setRank(dto.getRank());
     e.setLevel(dto.getLevel());
-    e.setUpdatedAt(DateUtil.now());
+    e.setUpdatedAt(LocalDateTime.now());
     logger.info("Actualizando Profile {}", id);
     return toResponse(repository.save(e));
   }
@@ -61,6 +67,13 @@ public class ProfileService {
   public void delete(Long id) {
     repository.delete(get(id));
     logger.info("Eliminando Profile {}", id);
+  }
+
+  private void validateExternalIds(Long userId, Long gameId) {
+    userClient.findById(userId);
+    if (gameId != null) {
+      gameClient.findById(gameId);
+    }
   }
 
   private Profile get(Long id) {

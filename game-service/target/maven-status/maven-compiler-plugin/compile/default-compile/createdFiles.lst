@@ -5,11 +5,9 @@ com\playgg\game\dto\GameResponseDTO.class
 com\playgg\game\dto\UpdateGameDTO.class
 com\playgg\game\model\Game$GameBuilder.class
 com\playgg\game\controller\GameController.class
-com\playgg\game\config\FeignConfig.class
 com\playgg\game\dto\CreateGameDTO.class
 com\playgg\game\dto\GameResponseDTO$GameResponseDTOBuilder.class
 com\playgg\game\exception\GlobalExceptionHandler.class
 com\playgg\game\exception\ResourceNotFoundException.class
 com\playgg\game\GameServiceApplication.class
 com\playgg\game\repository\GameRepository.class
-com\playgg\game\util\DateUtil.class

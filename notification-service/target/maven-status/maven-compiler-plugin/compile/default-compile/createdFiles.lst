@@ -1,8 +1,6 @@
 com\playgg\notification\dto\NotificationResponseDTO$NotificationResponseDTOBuilder.class
 com\playgg\notification\model\NotificationType.class
 com\playgg\notification\NotificationServiceApplication.class
-com\playgg\notification\config\FeignConfig.class
-com\playgg\notification\util\DateUtil.class
 com\playgg\notification\exception\GlobalExceptionHandler.class
 com\playgg\notification\model\Notification$NotificationBuilder.class
 com\playgg\notification\service\NotificationService.class
@@ -10,6 +8,7 @@ com\playgg\notification\dto\CreateNotificationDTO.class
 com\playgg\notification\dto\NotificationResponseDTO.class
 com\playgg\notification\dto\UpdateNotificationDTO.class
 com\playgg\notification\repository\NotificationRepository.class
+com\playgg\notification\client\UserClient.class
 com\playgg\notification\exception\ApiError.class
 com\playgg\notification\model\Notification.class
 com\playgg\notification\controller\NotificationController.class

@@ -9,6 +9,9 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates: [ Path=/users/** ]
+        - id: auth-service
+          uri: lb://auth-service
+          predicates: [ Path=/auth/** ]
         - id: profile-service
           uri: lb://profile-service
           predicates: [ Path=/profiles/** ]
@@ -18,9 +21,18 @@ spring:
         - id: community-service
           uri: lb://community-service
           predicates: [ Path=/communities/** ]
+        - id: chat-service
+          uri: lb://chat-service
+          predicates: [ Path=/messages/** ]
+        - id: notification-service
+          uri: lb://notification-service
+          predicates: [ Path=/notifications/** ]
         - id: game-service
           uri: lb://game-service
           predicates: [ Path=/games/** ]
+        - id: collectible-service
+          uri: lb://collectible-service
+          predicates: [ Path=/collectibles/** ]
 eureka:
   client:
     service-url:

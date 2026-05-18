@@ -1,21 +1,18 @@
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\client\NotificationClient.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\client\UserClient.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\config\FeignConfig.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\controller\CommentController.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\controller\PostController.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\dto\CommentResponseDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\dto\CreateCommentDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\dto\CreatePostDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\dto\PostResponseDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\dto\UpdatePostDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\exception\ApiError.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\exception\GlobalExceptionHandler.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\exception\ResourceNotFoundException.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\ForumServiceApplication.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\model\Comment.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\model\Post.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\repository\CommentRepository.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\repository\PostRepository.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\service\CommentService.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\service\PostService.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\forum-service\src\main\java\com\playgg\forum\util\DateUtil.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\client\UserClient.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\controller\CommentController.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\controller\PostController.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\dto\CommentResponseDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\dto\CreateCommentDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\dto\CreatePostDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\dto\PostResponseDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\dto\UpdatePostDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\exception\ApiError.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\exception\GlobalExceptionHandler.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\exception\ResourceNotFoundException.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\ForumServiceApplication.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\model\Comment.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\model\Post.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\repository\CommentRepository.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\repository\PostRepository.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\service\CommentService.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\forum-service\src\main\java\com\playgg\forum\service\PostService.java

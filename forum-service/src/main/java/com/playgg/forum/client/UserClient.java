@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/** Cliente Feign hacia user-service. */
+/** Feign consulta user-service por id; los posts y comentarios guardan solo userId. */
 @FeignClient(name = "user-service")
 public interface UserClient {
 

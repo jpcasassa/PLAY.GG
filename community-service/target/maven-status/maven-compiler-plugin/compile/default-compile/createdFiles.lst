@@ -2,7 +2,6 @@ com\playgg\community\dto\AddMemberDTO.class
 com\playgg\community\model\Community$CommunityBuilder.class
 com\playgg\community\dto\CommunityResponseDTO.class
 com\playgg\community\repository\CommunityMemberRepository.class
-com\playgg\community\config\FeignConfig.class
 com\playgg\community\model\CommunityMember.class
 com\playgg\community\model\CommunityMember$CommunityMemberBuilder.class
 com\playgg\community\CommunityServiceApplication.class
@@ -11,7 +10,6 @@ com\playgg\community\dto\CreateCommunityDTO.class
 com\playgg\community\exception\GlobalExceptionHandler.class
 com\playgg\community\model\CommunityRole.class
 com\playgg\community\repository\CommunityRepository.class
-com\playgg\community\util\DateUtil.class
 com\playgg\community\model\Community.class
 com\playgg\community\client\UserClient.class
 com\playgg\community\dto\CommunityResponseDTO$CommunityResponseDTOBuilder.class

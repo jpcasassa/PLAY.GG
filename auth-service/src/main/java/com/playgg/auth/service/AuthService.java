@@ -5,7 +5,7 @@ import com.playgg.auth.dto.*;
 import com.playgg.auth.exception.ResourceNotFoundException;
 import com.playgg.auth.model.AuthSession;
 import com.playgg.auth.repository.AuthSessionRepository;
-import com.playgg.auth.util.*;
+
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -18,7 +18,7 @@ public class AuthService {
   private static final Logger logger = LoggerFactory.getLogger(AuthService.class);
   private final UserClient userClient;
   private final AuthSessionRepository repository;
-  private final JwtUtil jwtUtil;
+  private final JwtService jwtService;
 
   public AuthResponseDTO register(RegisterRequestDTO dto) {
     UserClient.UserDataDTO user = userClient.create(dto).getBody();
@@ -61,14 +61,14 @@ public class AuthService {
 
   private AuthResponseDTO createSession(UserClient.UserDataDTO user) {
     String role = user.role() == null ? "PLAYER" : user.role();
-    String token = jwtUtil.generateToken(user.userId(), user.email(), role);
-    String refresh = jwtUtil.generateRefreshToken(user.userId());
+    String token = jwtService.generateToken(user.userId(), user.email(), role);
+    String refresh = jwtService.generateRefreshToken(user.userId());
     AuthSession session =
         AuthSession.builder()
             .userId(user.userId())
             .token(token)
             .refreshToken(refresh)
-            .createdAt(DateUtil.now())
+            .createdAt(LocalDateTime.now())
             .expiresAt(LocalDateTime.now().plusHours(1))
             .revoked(false)
             .build();

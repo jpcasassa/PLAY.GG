@@ -1,18 +1,16 @@
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\AuthServiceApplication.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\client\UserClient.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\config\FeignConfig.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\config\SecurityConfig.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\controller\AuthController.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\dto\AuthResponseDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\dto\LoginRequestDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\dto\LogoutRequestDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\dto\RefreshRequestDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\dto\RegisterRequestDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\exception\ApiError.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\exception\GlobalExceptionHandler.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\exception\ResourceNotFoundException.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\model\AuthSession.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\repository\AuthSessionRepository.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\service\AuthService.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\util\DateUtil.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\auth-service\src\main\java\com\playgg\auth\util\JwtUtil.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\AuthServiceApplication.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\client\UserClient.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\config\SecurityConfig.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\controller\AuthController.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\dto\AuthResponseDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\dto\LoginRequestDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\dto\LogoutRequestDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\dto\RefreshRequestDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\dto\RegisterRequestDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\exception\ApiError.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\exception\GlobalExceptionHandler.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\exception\ResourceNotFoundException.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\model\AuthSession.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\repository\AuthSessionRepository.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\service\AuthService.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\auth-service\src\main\java\com\playgg\auth\service\JwtService.java

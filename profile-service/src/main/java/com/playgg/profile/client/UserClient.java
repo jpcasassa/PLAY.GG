@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/** Cliente Feign hacia user-service. */
+/** Feign consulta user-service por id; profile guarda solo userId, no una relacion JPA con User. */
 @FeignClient(name = "user-service")
 public interface UserClient {
 

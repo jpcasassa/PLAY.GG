@@ -1,10 +1,12 @@
 package com.playgg.collectible.service;
 
+import com.playgg.collectible.client.GameClient;
+import com.playgg.collectible.client.UserClient;
 import com.playgg.collectible.dto.*;
 import com.playgg.collectible.exception.ResourceNotFoundException;
 import com.playgg.collectible.model.*;
 import com.playgg.collectible.repository.CollectibleRepository;
-import com.playgg.collectible.util.DateUtil;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.*;
@@ -16,15 +18,18 @@ import org.springframework.stereotype.Service;
 public class CollectibleService {
   private static final Logger logger = LoggerFactory.getLogger(CollectibleService.class);
   private final CollectibleRepository repository;
+  private final UserClient userClient;
+  private final GameClient gameClient;
 
   public CollectibleResponseDTO create(CreateCollectibleDTO dto) {
+    validateExternalIds(dto.getUserId(), dto.getGameId());
     Collectible e = new Collectible();
     e.setUserId(dto.getUserId());
     e.setGameId(dto.getGameId());
     e.setName(dto.getName());
     e.setDescription(dto.getDescription());
     e.setRarity(dto.getRarity());
-    e.setUnlockedAt(DateUtil.now());
+    e.setUnlockedAt(LocalDateTime.now());
     logger.info("Creando Collectible");
     return toResponse(repository.save(e));
   }
@@ -40,6 +45,7 @@ public class CollectibleService {
 
   public CollectibleResponseDTO update(Long id, UpdateCollectibleDTO dto) {
     Collectible e = get(id);
+    validateExternalIds(dto.getUserId(), dto.getGameId());
     e.setUserId(dto.getUserId());
     e.setGameId(dto.getGameId());
     e.setName(dto.getName());
@@ -52,6 +58,11 @@ public class CollectibleService {
   public void delete(Long id) {
     repository.delete(get(id));
     logger.info("Eliminando Collectible {}", id);
+  }
+
+  private void validateExternalIds(Long userId, Long gameId) {
+    userClient.findById(userId);
+    gameClient.findById(gameId);
   }
 
   private Collectible get(Long id) {

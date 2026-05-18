@@ -1,15 +1,13 @@
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\config\FeignConfig.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\controller\UserController.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\dto\CreateUserDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\dto\UpdateUserDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\dto\UserAuthDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\dto\UserResponseDTO.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\exception\ApiError.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\exception\GlobalExceptionHandler.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\exception\ResourceNotFoundException.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\model\Role.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\model\User.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\repository\UserRepository.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\service\UserService.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\UserServiceApplication.java
-C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\Play.GG\user-service\src\main\java\com\playgg\user\util\DateUtil.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\controller\UserController.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\dto\CreateUserDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\dto\UpdateUserDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\dto\UserAuthDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\dto\UserResponseDTO.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\exception\ApiError.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\exception\GlobalExceptionHandler.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\exception\ResourceNotFoundException.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\model\Role.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\model\User.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\repository\UserRepository.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\service\UserService.java
+C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\user-service\src\main\java\com\playgg\user\UserServiceApplication.java
