@@ -16,8 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 /**
  * Configuracion simple de Spring Security para el proyecto universitario.
  *
- * <p>Se deja login y registro abiertos porque son los endpoints que permiten obtener una sesion.
- * Los demas endpoints de auth quedan protegidos con HTTP Basic para demostrar autenticacion basica.
+ * <p>Se deja login y registro abiertos para facilitar las pruebas del proyecto. Cualquier endpoint
+ * futuro quedara protegido con HTTP Basic.
  */
 @Configuration
 @EnableWebSecurity
@@ -33,7 +33,7 @@ public class SecurityConfig {
                     .permitAll()
                     .anyRequest()
                     .authenticated())
-        // Activa autenticacion basica HTTP para endpoints protegidos.
+        // Activa autenticacion basica HTTP para endpoints protegidos futuros.
         .httpBasic(Customizer.withDefaults())
         .build();
   }

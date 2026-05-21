@@ -27,16 +27,4 @@ public class AuthController {
     return ResponseEntity.status(HttpStatus.CREATED).body(service.register(dto));
   }
 
-  // POST se usa para crear un nuevo recurso. El cuerpo llega como JSON con @RequestBody.
-  @PostMapping("/refresh")
-  public ResponseEntity<AuthResponseDTO> refresh(@Valid @RequestBody RefreshRequestDTO dto) {
-    return ResponseEntity.ok(service.refresh(dto));
-  }
-
-  // POST se usa para crear un nuevo recurso. El cuerpo llega como JSON con @RequestBody.
-  @PostMapping("/logout")
-  public ResponseEntity<Void> logout(@Valid @RequestBody LogoutRequestDTO dto) {
-    service.logout(dto);
-    return ResponseEntity.noContent().build();
-  }
 }

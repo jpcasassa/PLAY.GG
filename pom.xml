@@ -28,9 +28,8 @@
         <module>collectible-service</module>
     </modules>
     <properties>
-        <java.version>21</java.version>
+        <java.version>17</java.version>
         <spring-cloud.version>2023.0.3</spring-cloud.version>
-        <jjwt.version>0.12.6</jjwt.version>
         <lombok.version>1.18.46</lombok.version>
     </properties>
     <!-- Spring Cloud BOM evita repetir versiones de Eureka, Gateway y OpenFeign en cada modulo. -->

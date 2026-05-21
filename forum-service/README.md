@@ -53,8 +53,8 @@ Este servicio usa una relacion `OneToMany` entre `Post` y `Comment`, porque amba
 
 ## Comunicacion con otros servicios
 
-- Puede consultar `user-service` para obtener informacion del autor.
-- Puede conectarse con `notification-service` para generar notificaciones por comentarios.
+- Consulta `user-service` por Feign para validar que el `userId` del autor o comentarista exista.
+- No crea notificaciones automaticamente en el codigo actual. Si se quisiera agregar ese flujo, habria que incorporar un cliente Feign hacia `notification-service`.
 
 ## Para la defensa
 

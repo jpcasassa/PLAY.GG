@@ -11,10 +11,14 @@ Permite que el cliente no tenga que conocer todos los puertos internos. Por ejem
 ## Rutas configuradas
 
 - `/users/**` hacia `user-service`
+- `/auth/**` hacia `auth-service`
 - `/profiles/**` hacia `profile-service`
 - `/posts/**` y `/comments/**` hacia `forum-service`
 - `/communities/**` hacia `community-service`
+- `/messages/**` hacia `chat-service`
+- `/notifications/**` hacia `notification-service`
 - `/games/**` hacia `game-service`
+- `/collectibles/**` hacia `collectible-service`
 
 ## Puerto
 

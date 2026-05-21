@@ -6,7 +6,8 @@ import lombok.*;
 @Builder
 public class AuthResponseDTO {
   private Long userId;
-  private String token;
-  private String refreshToken;
+  private String nickname;
+  private String email;
   private String role;
+  private String message;
 }

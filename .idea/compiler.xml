@@ -6,12 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+      </profile>
+      <profile name="Annotation profile for PLAY.GG Microservices" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
         <module name="auth-service" />
         <module name="game-service" />
         <module name="community-service" />
         <module name="forum-service" />
         <module name="gateway-service" />
-        <module name="search-service" />
         <module name="chat-service" />
         <module name="profile-service" />
         <module name="user-service" />
@@ -22,6 +30,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="playgg" target="21" />
+      <module name="search-service" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

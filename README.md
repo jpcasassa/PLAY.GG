@@ -6,7 +6,7 @@ El objetivo de esta version es ser clara, defendible y facil de recorrer. No usa
 
 ## Arquitectura general
 
-El proyecto usa Maven Multi-Module. El `pom.xml` padre centraliza Java 21, Spring Boot 3 y Spring Cloud para que todos los servicios trabajen con versiones coherentes.
+El proyecto usa Maven Multi-Module. El `pom.xml` padre centraliza Java 17, Spring Boot 3 y Spring Cloud para que todos los servicios trabajen con versiones coherentes.
 
 Cada microservicio de dominio sigue una arquitectura CSR simple:
 
@@ -30,7 +30,7 @@ controller -> service -> repository
 | `discovery-service` | 8761 | Registro Eureka de servicios |
 | `gateway-service` | 8080 | Entrada unica a la API usando Spring Cloud Gateway |
 | `user-service` | 8081 | Usuarios, datos de cuenta y datos internos para autenticacion |
-| `auth-service` | 8082 | Registro, login, JWT, refresh token y logout |
+| `auth-service` | 8082 | Registro y login basico consultando `user-service` |
 | `profile-service` | 8083 | Perfil gamer/social del usuario |
 | `forum-service` | 8084 | Posts y comentarios |
 | `community-service` | 8085 | Comunidades y miembros |
@@ -64,14 +64,13 @@ Las relaciones JPA se usan solo dentro del mismo microservicio. Ejemplos:
 
 ## Tecnologias utilizadas
 
-- Java 21
+- Java 17
 - Spring Boot 3
 - Spring Cloud
 - Eureka Discovery Server
 - Spring Cloud Gateway
 - OpenFeign
 - Spring Security en `auth-service`
-- JWT con JJWT
 - Spring Data JPA / Hibernate
 - MySQL
 - Bean Validation
@@ -100,11 +99,11 @@ public interface UserClient {
 
 Feign se usa solo donde aporta claridad. Los servicios que no consultan otros microservicios no tienen dependencia de OpenFeign.
 
-## JWT
+## Autenticacion basica
 
-`auth-service` genera tokens JWT al registrar o iniciar sesion. El token contiene datos basicos como id de usuario, email y rol. Tambien se guarda una sesion en MySQL para poder manejar refresh token y logout.
+`auth-service` permite registrar usuarios e iniciar sesion de forma simple. No guarda sesiones propias: consulta a `user-service` mediante Feign, valida credenciales y devuelve datos basicos del usuario.
 
-Esta implementacion es simple y pensada para el contexto universitario: demuestra autenticacion, tokens y sesiones sin entrar en OAuth ni configuraciones empresariales complejas.
+Esta implementacion es pensada para el contexto universitario: demuestra separacion entre autenticacion y usuarios sin agregar OAuth ni manejo avanzado de sesiones.
 
 ## Bases de datos
 
@@ -112,7 +111,6 @@ Cada microservicio de dominio usa su propia base de datos MySQL. Con XAMPP se pu
 
 ```sql
 CREATE DATABASE IF NOT EXISTS playgg_users_db;
-CREATE DATABASE IF NOT EXISTS playgg_auth_db;
 CREATE DATABASE IF NOT EXISTS playgg_profiles_db;
 CREATE DATABASE IF NOT EXISTS playgg_forum_db;
 CREATE DATABASE IF NOT EXISTS playgg_communities_db;
@@ -178,13 +176,302 @@ mvn -pl discovery-service spring-boot:run
 mvn -pl gateway-service spring-boot:run
 ```
 
-6. Levantar los servicios de dominio que se quieran probar:
+6. Levantar los servicios de dominio que se quieran probar. Para una presentacion completa, este orden es el mas comodo:
 
 ```bash
 mvn -pl user-service spring-boot:run
 mvn -pl auth-service spring-boot:run
 mvn -pl game-service spring-boot:run
+mvn -pl profile-service spring-boot:run
+mvn -pl forum-service spring-boot:run
+mvn -pl community-service spring-boot:run
+mvn -pl chat-service spring-boot:run
+mvn -pl notification-service spring-boot:run
+mvn -pl collectible-service spring-boot:run
 ```
+
+7. Abrir Eureka en `http://localhost:8761` y confirmar que los servicios aparezcan registrados.
+
+8. Probar la API desde el Gateway en `http://localhost:8080`. Por ejemplo, `POST http://localhost:8080/auth/register` o `GET http://localhost:8080/users`.
+
+## Guia rapida para presentacion
+
+Para mostrar el flujo de datos de forma clara, conviene ingresar datos por Postman o Insomnia usando siempre el Gateway (`localhost:8080`). El Gateway redirige al microservicio correcto y cada microservicio guarda sus propios datos en su base MySQL.
+
+| Paso | Peticion | Servicio que responde | Donde se guarda |
+| --- | --- | --- | --- |
+| 1 | `POST /auth/register` | `auth-service` crea el usuario usando `user-service` por Feign | `playgg_users_db.users` |
+| 2 | `POST /auth/login` | `auth-service` valida credenciales consultando `user-service` | No guarda datos propios |
+| 3 | `POST /games` | `game-service` | `playgg_games_db.games` |
+| 4 | `POST /profiles` | `profile-service` valida `userId` y `favoriteGameId` por Feign | `playgg_profiles_db.profiles` |
+| 5 | `POST /posts` | `forum-service` valida `userId` por Feign | `playgg_forum_db.posts` |
+| 6 | `POST /comments` | `forum-service` valida `postId` local y `userId` por Feign | `playgg_forum_db.comments` |
+| 7 | `POST /communities` | `community-service` valida `ownerId` por Feign | `playgg_communities_db.communities` |
+| 8 | `POST /messages` | `chat-service` valida emisor y receptor por Feign | `playgg_chat_db.messages` |
+| 9 | `POST /notifications` | `notification-service` valida `userId` por Feign | `playgg_notifications_db.notifications` |
+| 10 | `POST /collectibles` | `collectible-service` valida `userId` y `gameId` por Feign | `playgg_collectibles_db.collectibles` |
+
+Ejemplo de registro:
+
+```json
+{
+  "nickname": "playerOne",
+  "firstName": "Juan",
+  "lastName": "Perez",
+  "email": "juan@mail.com",
+  "password": "12345678",
+  "country": "Chile"
+}
+```
+
+Ejemplo de juego:
+
+```json
+{
+  "title": "Valorant",
+  "genre": "Shooter",
+  "platform": "PC",
+  "multiplayer": true,
+  "competitive": true,
+  "imageUrl": "https://example.com/valorant.jpg"
+}
+```
+
+Ejemplo de perfil, asumiendo `userId = 1` y `gameId = 1`:
+
+```json
+{
+  "userId": 1,
+  "avatarUrl": "https://example.com/avatar.png",
+  "bannerUrl": "https://example.com/banner.png",
+  "bio": "Jugador competitivo de FPS",
+  "steamUsername": "playerOneSteam",
+  "discordUsername": "playerOne#1234",
+  "favoriteGameId": 1,
+  "rank": "Gold",
+  "level": 12
+}
+```
+
+## Ejemplos JSON por microservicio
+
+Los campos que terminan en `Id` deben existir antes de enviar la peticion. Por ejemplo, para crear un perfil primero debe existir el usuario (`userId`) y, si se informa juego favorito, tambien debe existir el juego (`favoriteGameId`).
+
+### auth-service
+
+Registro por `POST /auth/register`:
+
+```json
+{
+  "nickname": "playerOne",
+  "firstName": "Juan",
+  "lastName": "Perez",
+  "email": "juan@mail.com",
+  "password": "12345678",
+  "country": "Chile"
+}
+```
+
+Login por `POST /auth/login`:
+
+```json
+{
+  "email": "juan@mail.com",
+  "password": "12345678"
+}
+```
+
+### user-service
+
+Crear usuario por `POST /users`:
+
+```json
+{
+  "nickname": "playerTwo",
+  "firstName": "Maria",
+  "lastName": "Lopez",
+  "email": "maria@mail.com",
+  "password": "12345678",
+  "country": "Chile",
+  "role": "PLAYER",
+  "active": true
+}
+```
+
+Roles validos: `PLAYER`, `ADMIN`.
+
+### game-service
+
+Crear juego por `POST /games`:
+
+```json
+{
+  "title": "Valorant",
+  "genre": "Shooter",
+  "platform": "PC",
+  "multiplayer": true,
+  "competitive": true,
+  "imageUrl": "https://example.com/valorant.jpg"
+}
+```
+
+### profile-service
+
+Crear perfil por `POST /profiles`:
+
+```json
+{
+  "userId": 1,
+  "avatarUrl": "https://example.com/avatar.png",
+  "bannerUrl": "https://example.com/banner.png",
+  "bio": "Jugador competitivo de FPS",
+  "steamUsername": "playerOneSteam",
+  "discordUsername": "playerOne#1234",
+  "favoriteGameId": 1,
+  "rank": "Gold",
+  "level": 12
+}
+```
+
+`userId` debe existir en `user-service`. `favoriteGameId` es opcional, pero si se envia debe existir en `game-service`.
+
+### forum-service
+
+Crear post por `POST /posts`:
+
+```json
+{
+  "userId": 1,
+  "title": "Mejor agente para empezar",
+  "content": "Estoy empezando en Valorant, que agente recomiendan?",
+  "category": "Valorant"
+}
+```
+
+Crear comentario por `POST /comments`:
+
+```json
+{
+  "postId": 1,
+  "userId": 1,
+  "content": "Sage es buena opcion para aprender."
+}
+```
+
+### community-service
+
+Crear comunidad por `POST /communities`:
+
+```json
+{
+  "ownerId": 1,
+  "name": "Valorant Chile",
+  "description": "Comunidad para buscar equipo y compartir partidas",
+  "bannerUrl": "https://example.com/banner-valorant.jpg"
+}
+```
+
+Agregar miembro por `POST /communities/{id}/members`:
+
+```json
+{
+  "userId": 2,
+  "role": "MEMBER"
+}
+```
+
+Roles validos: `OWNER`, `MODERATOR`, `MEMBER`.
+
+### chat-service
+
+Crear mensaje por `POST /messages`:
+
+```json
+{
+  "senderId": 1,
+  "receiverId": 2,
+  "content": "Hola, jugamos?",
+  "read": false
+}
+```
+
+`senderId` y `receiverId` deben existir en `user-service`.
+
+### notification-service
+
+Crear notificacion por `POST /notifications`:
+
+```json
+{
+  "userId": 1,
+  "title": "Nuevo comentario",
+  "message": "Alguien comento tu publicacion",
+  "type": "COMMENT",
+  "read": false
+}
+```
+
+Tipos validos: `MESSAGE`, `COMMENT`, `COMMUNITY_INVITE`, `FRIEND_REQUEST`.
+
+### collectible-service
+
+Crear coleccionable por `POST /collectibles`:
+
+```json
+{
+  "userId": 1,
+  "gameId": 1,
+  "name": "Primera victoria",
+  "description": "Ganaste tu primera partida competitiva",
+  "rarity": "RARE"
+}
+```
+
+Rarezas validas: `COMMON`, `RARE`, `EPIC`, `LEGENDARY`.
+
+## Flujo de microservicios
+
+```mermaid
+flowchart LR
+    Cliente[Cliente o Postman] --> Gateway[Gateway :8080]
+    Gateway --> Eureka[Eureka :8761]
+    Gateway --> User[user-service :8081]
+    Gateway --> Auth[auth-service :8082]
+    Gateway --> Profile[profile-service :8083]
+    Gateway --> Forum[forum-service :8084]
+    Gateway --> Community[community-service :8085]
+    Gateway --> Chat[chat-service :8086]
+    Gateway --> Notification[notification-service :8087]
+    Gateway --> Game[game-service :8088]
+    Gateway --> Collectible[collectible-service :8089]
+
+    Auth -->|Feign| User
+    Profile -->|Feign| User
+    Profile -->|Feign| Game
+    Forum -->|Feign| User
+    Community -->|Feign| User
+    Chat -->|Feign| User
+    Notification -->|Feign| User
+    Collectible -->|Feign| User
+    Collectible -->|Feign| Game
+
+    User --> DBUsers[(playgg_users_db)]
+    Profile --> DBProfiles[(playgg_profiles_db)]
+    Forum --> DBForum[(playgg_forum_db)]
+    Community --> DBCommunity[(playgg_communities_db)]
+    Chat --> DBChat[(playgg_chat_db)]
+    Notification --> DBNotifications[(playgg_notifications_db)]
+    Game --> DBGames[(playgg_games_db)]
+    Collectible --> DBCollectibles[(playgg_collectibles_db)]
+```
+
+Flujo general de ingreso o consulta:
+
+```text
+Cliente -> Gateway -> Controller -> Service -> Repository -> MySQL
+```
+
+Si el dato depende de otro microservicio, el `Service` valida primero por Feign. Ejemplo: `profile-service` recibe `userId` y `favoriteGameId`, consulta `user-service` y `game-service`, y solo despues guarda el perfil en su propia base de datos.
 
 ## Endpoints principales
 
@@ -196,8 +483,6 @@ mvn -pl game-service spring-boot:run
 - `GET /users/internal/auth/email/{email}`
 - `POST /auth/register`
 - `POST /auth/login`
-- `POST /auth/refresh`
-- `POST /auth/logout`
 - `POST /profiles`
 - `POST /posts`
 - `POST /comments`
@@ -218,4 +503,4 @@ mvn -pl game-service spring-boot:run
 - Feign se usa solo para validar datos externos necesarios.
 - No hay relaciones JPA entre microservicios; solo ids como `userId`, `gameId` o `postId`.
 - Las relaciones JPA locales se mantienen donde ayudan a representar el dominio.
-- JWT se concentra en `auth-service`, por lo que la autenticacion no queda repartida por todo el proyecto.
+- La autenticacion se concentra en `auth-service`, por lo que la validacion de credenciales no queda repartida por todo el proyecto.

@@ -47,8 +47,8 @@ Entidad `Message`:
 
 ## Comunicacion con otros servicios
 
-- Puede consultar `user-service` para validar usuarios.
-- Puede conectarse con `notification-service` para avisar mensajes nuevos.
+- Consulta `user-service` por Feign para validar que existan `senderId` y `receiverId`.
+- No crea notificaciones automaticamente en el codigo actual. Si se quisiera agregar ese flujo, habria que incorporar un cliente Feign hacia `notification-service`.
 
 ## Para la defensa
 
