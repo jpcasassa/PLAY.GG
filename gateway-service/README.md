@@ -32,7 +32,7 @@ Primero debe estar levantado `discovery-service`:
 mvn -pl gateway-service spring-boot:run
 ```
 
-## Para la defensa
+## Resumen
 
 El Gateway centraliza el acceso a la plataforma y ordena las rutas. Es una pieza comun en microservicios porque reduce el acoplamiento entre frontend/cliente y servicios internos.
 

@@ -16,8 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 /**
  * Configuracion simple de Spring Security para el proyecto universitario.
  *
- * <p>Se deja login y registro abiertos para facilitar las pruebas del proyecto. Cualquier endpoint
- * futuro quedara protegido con HTTP Basic.
+ * <p>Login y registro quedan abiertos para las pruebas. Cualquier endpoint futuro quedara protegido
+ * con HTTP Basic.
  */
 @Configuration
 @EnableWebSecurity
@@ -39,8 +39,8 @@ public class SecurityConfig {
   }
 
   /**
-   * Usuario en memoria para pruebas y defensa. En un sistema productivo estos usuarios se
-   * guardarian en base de datos.
+   * Usuario en memoria para pruebas. En un sistema productivo estos usuarios se guardarian en base
+   * de datos.
    */
 
   // Bean administrado por Spring; queda disponible para inyeccion en la aplicacion.

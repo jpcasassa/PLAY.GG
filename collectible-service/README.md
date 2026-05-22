@@ -6,7 +6,7 @@ Gestiona logros, trofeos o coleccionables obtenidos por usuarios.
 
 ## Utilidad en el proyecto
 
-Permite registrar recompensas asociadas a un usuario y a un juego. Es una funcionalidad gamer clara y facil de explicar.
+Permite registrar recompensas asociadas a un usuario y a un juego.
 
 ## Datos que maneja
 
@@ -50,9 +50,9 @@ Guarda `userId` y `gameId`. Puede consultar:
 - `user-service` para datos del jugador.
 - `game-service` para datos del juego.
 
-## Para la defensa
-
-Este servicio muestra como un microservicio puede depender logicamente de ids externos sin acoplarse directamente a tablas de otros servicios.
+## Resumen
+
+Este servicio usa ids externos sin acoplarse directamente a tablas de otros servicios.
 
 ## Guia para leer el codigo
 

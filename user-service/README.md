@@ -59,9 +59,9 @@ El `nickname` y el `email` son unicos. La password debe tener minimo 8 caractere
 }
 ```
 
-## Para la defensa
-
-Este servicio demuestra CRUD, DTOs, validaciones, JPA y separacion CSR. Es importante explicar que otros servicios no tienen relacion JPA con `User`; solo guardan `userId` y consultan por Feign si necesitan mas informacion.
+## Resumen
+
+Este servicio maneja CRUD, DTOs, validaciones, JPA y separacion CSR. Otros servicios no tienen relacion JPA con `User`; solo guardan `userId` y consultan por Feign si necesitan mas informacion.
 
 ## Guia para leer el codigo
 

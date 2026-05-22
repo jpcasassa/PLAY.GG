@@ -54,7 +54,7 @@ Tipos:
 }
 ```
 
-## Para la defensa
+## Resumen
 
 Este servicio separa las notificaciones del resto de funcionalidades. Asi forum, chat o community no tienen que guardar notificaciones en sus propias bases de datos.
 

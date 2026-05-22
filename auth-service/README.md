@@ -65,11 +65,11 @@ Usa Feign para consultar `user-service`. No accede directamente a la base de dat
 
 ## Spring Security
 
-El proyecto mantiene una configuracion simple de Spring Security con usuario en memoria (`admin/admin123`) para demostrar HTTP Basic si se agregan endpoints protegidos. Los endpoints `/auth/register` y `/auth/login` quedan publicos para facilitar las pruebas.
+El proyecto mantiene una configuracion simple de Spring Security con usuario en memoria (`admin/admin123`) para usar HTTP Basic si se agregan endpoints protegidos. Los endpoints `/auth/register` y `/auth/login` quedan publicos para las pruebas.
 
-## Para la defensa
+## Resumen
 
-Este servicio separa autenticacion de gestion de usuarios. `auth-service` valida credenciales, pero los datos reales del usuario viven en `user-service`. Asi se mantiene una responsabilidad clara sin agregar complejidad de sesiones.
+Este servicio separa autenticacion de gestion de usuarios. `auth-service` valida credenciales, pero los datos del usuario viven en `user-service`.
 
 ## Guia para leer el codigo
 

@@ -49,7 +49,7 @@ Entidad `Game`:
 }
 ```
 
-## Para la defensa
+## Resumen
 
 Este servicio representa un catalogo independiente. Otros servicios guardan `gameId`, pero no crean relaciones JPA con `Game`.
 

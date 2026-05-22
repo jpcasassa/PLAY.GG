@@ -26,9 +26,9 @@ mvn -pl discovery-service spring-boot:run
 
 Luego se levantan los demas servicios. Al entrar a `http://localhost:8761` se puede ver la consola de Eureka.
 
-## Para la defensa
+## Resumen
 
-Podemos explicar que Eureka permite descubrimiento de servicios. Esto evita escribir IPs manualmente y hace mas ordenada la comunicacion entre microservicios.
+Eureka permite que los servicios se encuentren por nombre. Asi no hay que escribir IPs manualmente.
 
 ## Guia para leer el codigo
 
@@ -46,4 +46,4 @@ Que editar segun el cambio:
 - Cambiar nombre del servicio: editar `spring.application.name`.
 - Revisar registro de servicios: abrir `http://localhost:8761` cuando el servicio este corriendo.
 
-Para defenderlo: este servicio no guarda datos; solo permite que los demas microservicios se encuentren por nombre.
+Este servicio no guarda datos; solo permite que los demas microservicios se encuentren por nombre.

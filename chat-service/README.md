@@ -6,7 +6,7 @@ Gestiona mensajes privados entre usuarios.
 
 ## Utilidad en el proyecto
 
-Permite registrar mensajes enviados de un usuario a otro. No usa WebSockets porque el alcance universitario del proyecto se mantiene simple y enfocado en CRUD REST.
+Permite registrar mensajes enviados de un usuario a otro. No usa WebSockets porque el proyecto se mantiene simple y enfocado en CRUD REST.
 
 ## Datos que maneja
 
@@ -50,9 +50,9 @@ Entidad `Message`:
 - Consulta `user-service` por Feign para validar que existan `senderId` y `receiverId`.
 - No crea notificaciones automaticamente en el codigo actual. Si se quisiera agregar ese flujo, habria que incorporar un cliente Feign hacia `notification-service`.
 
-## Para la defensa
-
-El chat se implementa como mensajeria REST simple. Esto cumple el objetivo sin agregar WebSockets ni complejidad innecesaria.
+## Resumen
+
+El chat se implementa como mensajeria REST simple.
 
 ## Guia para leer el codigo
 

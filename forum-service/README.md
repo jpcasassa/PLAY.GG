@@ -56,9 +56,9 @@ Este servicio usa una relacion `OneToMany` entre `Post` y `Comment`, porque amba
 - Consulta `user-service` por Feign para validar que el `userId` del autor o comentarista exista.
 - No crea notificaciones automaticamente en el codigo actual. Si se quisiera agregar ese flujo, habria que incorporar un cliente Feign hacia `notification-service`.
 
-## Para la defensa
-
-Es importante aclarar que las relaciones JPA solo se usan dentro del mismo microservicio. `Post` y `Comment` si pueden relacionarse porque comparten responsabilidad y base de datos.
+## Resumen
+
+Las relaciones JPA solo se usan dentro del mismo microservicio. `Post` y `Comment` si pueden relacionarse porque comparten responsabilidad y base de datos.
 
 ## Guia para leer el codigo
 

@@ -2,7 +2,7 @@
 
 PLAY.GG es una plataforma gamer/social construida como proyecto universitario de microservicios con Spring Boot. La idea es separar responsabilidades por dominio: usuarios, autenticacion, perfiles, foro, comunidades, chat, notificaciones, juegos y coleccionables.
 
-El objetivo de esta version es ser clara, defendible y facil de recorrer. No usa tecnologias de infraestructura avanzada como Kafka, RabbitMQ, Kubernetes, Redis, WebSockets ni Docker complejo.
+El objetivo de esta version es ser clara. No usa tecnologias de infraestructura avanzada como Kafka, RabbitMQ, Kubernetes, Redis, WebSockets ni Docker complejo.
 
 ## Arquitectura general
 
@@ -103,7 +103,7 @@ Feign se usa solo donde aporta claridad. Los servicios que no consultan otros mi
 
 `auth-service` permite registrar usuarios e iniciar sesion de forma simple. No guarda sesiones propias: consulta a `user-service` mediante Feign, valida credenciales y devuelve datos basicos del usuario.
 
-Esta implementacion es pensada para el contexto universitario: demuestra separacion entre autenticacion y usuarios sin agregar OAuth ni manejo avanzado de sesiones.
+Esta implementacion separa autenticacion y usuarios sin agregar OAuth ni manejo avanzado de sesiones.
 
 ## Bases de datos
 
@@ -493,7 +493,7 @@ Si el dato depende de otro microservicio, el `Service` valida primero por Feign.
 - `POST /games`
 - `POST /collectibles`
 
-## Ideas para defensa tecnica
+## Ideas clave
 
 - El sistema se divide por dominios para que cada servicio tenga una responsabilidad clara.
 - Eureka permite descubrir servicios por nombre.

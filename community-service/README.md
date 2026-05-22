@@ -56,9 +56,9 @@ Roles:
 
 Guarda `ownerId` y `userId`, pero no crea relacion JPA con usuarios. Si necesita datos del usuario, consulta `user-service`.
 
-## Para la defensa
-
-Este servicio muestra un caso claro de dominio propio: comunidades y miembros. La relacion JPA existe entre entidades internas del mismo servicio, no entre servicios distintos.
+## Resumen
+
+Este servicio maneja comunidades y miembros. La relacion JPA existe entre entidades internas del mismo servicio, no entre servicios distintos.
 
 ## Guia para leer el codigo
 

@@ -48,9 +48,9 @@ Este servicio guarda `userId` y `favoriteGameId`. Si necesita datos completos, l
 - `user-service`: nickname, pais, usuario.
 - `game-service`: titulo, genero, juego favorito.
 
-## Para la defensa
-
-Es un buen ejemplo de independencia entre microservicios. No existe `@OneToOne User`; solo se guarda el id del usuario. Esto evita acoplar bases de datos.
+## Resumen
+
+No existe `@OneToOne User`; solo se guarda el id del usuario. Esto evita acoplar bases de datos.
 
 ## Guia para leer el codigo
 
