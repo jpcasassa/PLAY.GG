@@ -3,18 +3,27 @@
 Este diagrama muestra la arquitectura general del proyecto: cliente, API Gateway, Eureka, microservicios de dominio, comunicacion interna con OpenFeign y bases de datos MySQL por servicio.
 
 ```mermaid
+%%{init: {"flowchart": {"nodeSpacing": 70, "rankSpacing": 95}} }%%
 flowchart TB
   client["Cliente API<br/>Postman / Insomnia / Navegador"]
+  gateway["gateway-service<br/>Spring Cloud Gateway<br/>Puerto 8080"]
+  eureka["discovery-service<br/>Eureka Server<br/>Puerto 8761"]
 
-  subgraph edge["Entrada al sistema"]
-    gateway["gateway-service<br/>Spring Cloud Gateway<br/>Puerto 8080"]
-  end
-
-  subgraph discovery["Descubrimiento de servicios"]
-    eureka["discovery-service<br/>Eureka Server<br/>Puerto 8761"]
+  subgraph routes["Rutas expuestas por Gateway"]
+    direction TB
+    authRoute["/auth/**"]
+    usersRoute["/users/**"]
+    profilesRoute["/profiles/**"]
+    forumRoute["/posts/**<br/>/comments/**"]
+    communitiesRoute["/communities/**"]
+    chatRoute["/messages/**"]
+    notificationsRoute["/notifications/**"]
+    gamesRoute["/games/**"]
+    collectiblesRoute["/collectibles/**"]
   end
 
   subgraph services["Microservicios PLAY.GG"]
+    direction TB
     auth["auth-service<br/>Registro y login<br/>Puerto 8082"]
     users["user-service<br/>Usuarios<br/>Puerto 8081"]
     profiles["profile-service<br/>Perfiles<br/>Puerto 8083"]
@@ -27,6 +36,7 @@ flowchart TB
   end
 
   subgraph mysql["MySQL / XAMPP"]
+    direction TB
     usersDb[("playgg_users_db")]
     profilesDb[("playgg_profiles_db")]
     forumDb[("playgg_forum_db")]
@@ -38,27 +48,20 @@ flowchart TB
   end
 
   client -->|"HTTP"| gateway
+  gateway --> routes
 
-  gateway -->|"/auth/**"| auth
-  gateway -->|"/users/**"| users
-  gateway -->|"/profiles/**"| profiles
-  gateway -->|"/posts/** /comments/**"| forum
-  gateway -->|"/communities/**"| communities
-  gateway -->|"/messages/**"| chat
-  gateway -->|"/notifications/**"| notifications
-  gateway -->|"/games/**"| games
-  gateway -->|"/collectibles/**"| collectibles
+  authRoute --> auth
+  usersRoute --> users
+  profilesRoute --> profiles
+  forumRoute --> forum
+  communitiesRoute --> communities
+  chatRoute --> chat
+  notificationsRoute --> notifications
+  gamesRoute --> games
+  collectiblesRoute --> collectibles
 
   gateway -.->|"consulta registro"| eureka
-  auth -.->|"registro Eureka"| eureka
-  users -.->|"registro Eureka"| eureka
-  profiles -.->|"registro Eureka"| eureka
-  forum -.->|"registro Eureka"| eureka
-  communities -.->|"registro Eureka"| eureka
-  chat -.->|"registro Eureka"| eureka
-  notifications -.->|"registro Eureka"| eureka
-  games -.->|"registro Eureka"| eureka
-  collectibles -.->|"registro Eureka"| eureka
+  services -.->|"registro Eureka"| eureka
 
   auth -.->|"OpenFeign"| users
   profiles -.->|"OpenFeign"| users
@@ -80,6 +83,7 @@ flowchart TB
   collectibles --> collectiblesDb
 
   classDef client fill:#f8fafc,stroke:#334155,color:#0f172a
+  classDef route fill:#f1f5f9,stroke:#64748b,color:#0f172a
   classDef gateway fill:#dbeafe,stroke:#1d4ed8,color:#0f172a
   classDef discovery fill:#fef3c7,stroke:#b45309,color:#0f172a
   classDef service fill:#dcfce7,stroke:#15803d,color:#0f172a
@@ -88,6 +92,7 @@ flowchart TB
   class client client
   class gateway gateway
   class eureka discovery
+  class authRoute,usersRoute,profilesRoute,forumRoute,communitiesRoute,chatRoute,notificationsRoute,gamesRoute,collectiblesRoute route
   class auth,users,profiles,forum,communities,chat,notifications,games,collectibles service
   class usersDb,profilesDb,forumDb,communitiesDb,chatDb,notificationsDb,gamesDb,collectiblesDb database
 ```
