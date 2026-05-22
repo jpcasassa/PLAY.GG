@@ -1,4 +1,4 @@
-# PLAY.GG Microservices
+# PLAY.GG Microservices .
 
 PLAY.GG es una plataforma gamer/social construida como proyecto universitario de microservicios con Spring Boot. La idea es separar responsabilidades por dominio: usuarios, autenticacion, perfiles, foro, comunidades, chat, notificaciones, juegos y coleccionables.
 
