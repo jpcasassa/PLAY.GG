@@ -2,7 +2,7 @@
 
 PLAY.GG es una plataforma gamer/social construida como proyecto universitario de microservicios con Spring Boot. La idea es separar responsabilidades por dominio: usuarios, autenticacion, perfiles, foro, comunidades, chat, notificaciones, juegos y coleccionables.
 
-El objetivo de esta version es ser clara. No usa tecnologias de infraestructura avanzada como Kafka, RabbitMQ, Kubernetes, Redis, WebSockets ni Docker complejo.
+El objetivo de esta version es ser clara. No usa tecnologias de infraestructura avanzada.
 
 ## Arquitectura general
 
