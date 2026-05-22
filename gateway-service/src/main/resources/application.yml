@@ -17,7 +17,7 @@ spring:
           predicates: [ Path=/profiles/** ]
         - id: forum-service
           uri: lb://forum-service
-          predicates: [ Path=/posts/**, /comments/** ]
+          predicates: [ Path=/posts/**, Path=/comments/** ]
         - id: community-service
           uri: lb://community-service
           predicates: [ Path=/communities/** ]
