@@ -83,19 +83,11 @@ username: root
 password:
 ```
 
-## 4. Compilar el proyecto
-
-Desde la carpeta raiz del proyecto:
-
-```bash
-mvn clean package -DskipTests
-```
-
-Si `mvn` no esta reconocido, ejecuta los servicios desde IntelliJ IDEA o configura Maven en el PATH.
-
-## 5. Orden para levantar los microservicios
+## 4. Orden para levantar los microservicios
 
 Es importante respetar el orden inicial.
+
+No es necesario compilar el proyecto manualmente antes de levantar los servicios. Al ejecutar cada servicio con `spring-boot:run`, Maven compila lo necesario automaticamente.
 
 ### Paso 1: levantar Eureka
 
@@ -150,7 +142,7 @@ mvn -pl notification-service spring-boot:run
 mvn -pl collectible-service spring-boot:run
 ```
 
-## 6. Puertos
+## 5. Puertos
 
 | Servicio | Puerto | Uso |
 | --- | ---: | --- |
@@ -166,7 +158,7 @@ mvn -pl collectible-service spring-boot:run
 | game-service | 8088 | Juegos |
 | collectible-service | 8089 | Coleccionables |
 
-## 7. Como usar Eureka
+## 6. Como usar Eureka
 
 Eureka se abre en:
 
@@ -192,7 +184,7 @@ Si un servicio no aparece, revisa:
 - Que `discovery-service` este levantado.
 - Que el `application.yml` tenga Eureka apuntando a `http://localhost:8761/eureka/`.
 
-## 8. Como usar Gateway
+## 7. Como usar Gateway
 
 En vez de llamar cada microservicio por su puerto interno, usa:
 
@@ -212,7 +204,7 @@ POST http://localhost:8080/profiles
 
 Gateway redirige automaticamente al servicio correspondiente.
 
-## 9. Flujo recomendado para probar en Postman
+## 8. Flujo recomendado para probar en Postman
 
 ### 1. Registrar usuario
 
@@ -472,7 +464,7 @@ EPIC
 LEGENDARY
 ```
 
-## 10. Consultas utiles
+## 9. Consultas utiles
 
 Listar usuarios:
 
@@ -516,7 +508,7 @@ Listar miembros de una comunidad:
 GET http://localhost:8080/communities/1/members
 ```
 
-## 11. Flujo interno explicado
+## 10. Flujo interno explicado
 
 Cuando llamas un endpoint por Gateway, ocurre esto:
 
@@ -541,7 +533,7 @@ Ejemplo:
 4. Si viene `favoriteGameId`, valida el juego en `game-service`.
 5. Si todo existe, guarda el perfil en `playgg_profiles_db.profiles`.
 
-## 12. Problemas comunes
+## 11. Problemas comunes
 
 ### El servicio no aparece en Eureka
 
@@ -577,4 +569,3 @@ Regla practica:
 - Si usas `gameId`, ese juego debe existir.
 - Si usas `postId`, ese post debe existir.
 - Si usas `communityId`, esa comunidad debe existir.
-
