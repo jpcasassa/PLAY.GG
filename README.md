@@ -8,6 +8,8 @@ El objetivo de esta version es ser clara. No usa tecnologias de infraestructura 
 
 El proyecto usa Maven Multi-Module. El `pom.xml` padre centraliza Java 17, Spring Boot 3 y Spring Cloud para que todos los servicios trabajen con versiones coherentes.
 
+El diagrama completo de arquitectura esta en [`DIAGRAMA_ARQUITECTURA_MICROSERVICIOS.md`](DIAGRAMA_ARQUITECTURA_MICROSERVICIOS.md).
+
 Cada microservicio de dominio sigue una arquitectura CSR simple:
 
 ```text
