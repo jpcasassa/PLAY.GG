@@ -135,3 +135,58 @@ spring:
 ```
 
 Si tu MySQL tiene password, escribirla en `password`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/posts
+http://localhost:8080/comments
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8084/posts
+http://localhost:8084/comments
+```
+
+Crear post:
+
+```text
+POST http://localhost:8080/posts
+```
+
+```json
+{
+  "userId": 1,
+  "title": "Busco squad para ranked",
+  "content": "Juego de noche y busco equipo para subir rango.",
+  "category": "Valorant"
+}
+```
+
+Crear comentario:
+
+```text
+POST http://localhost:8080/comments
+```
+
+```json
+{
+  "postId": 1,
+  "userId": 1,
+  "content": "Me sumo, juego support."
+}
+```
+
+Peticiones utiles:
+
+- `GET http://localhost:8080/posts`
+- `GET http://localhost:8080/posts/1`
+- `PUT http://localhost:8080/posts/1`
+- `DELETE http://localhost:8080/posts/1`
+- `GET http://localhost:8080/comments/post/1`
+
+El `userId` debe existir en `user-service`. Para comentar, el `postId` debe existir en `forum-service`.

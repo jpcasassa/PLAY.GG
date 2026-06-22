@@ -55,3 +55,26 @@ Que editar segun el cambio:
 Ejemplo de ruta:
 
 `Path=/users/**` envia las peticiones a `lb://user-service`. El prefijo `lb` indica balanceo/descubrimiento por Eureka.
+
+## Pruebas con Thunder Client
+
+Gateway no recibe un JSON propio. Se usa para llamar a los endpoints de los demas servicios desde una sola base URL:
+
+```text
+http://localhost:8080
+```
+
+Ejemplos:
+
+- `POST http://localhost:8080/auth/register`
+- `POST http://localhost:8080/auth/login`
+- `GET http://localhost:8080/users`
+- `POST http://localhost:8080/games`
+- `POST http://localhost:8080/profiles`
+- `POST http://localhost:8080/posts`
+- `POST http://localhost:8080/communities`
+- `POST http://localhost:8080/messages`
+- `POST http://localhost:8080/notifications`
+- `POST http://localhost:8080/collectibles`
+
+Para probar por Gateway deben estar levantados `discovery-service`, `gateway-service` y el servicio destino.

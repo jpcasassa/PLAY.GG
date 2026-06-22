@@ -47,3 +47,20 @@ Que editar segun el cambio:
 - Revisar registro de servicios: abrir `http://localhost:8761` cuando el servicio este corriendo.
 
 Este servicio no guarda datos; solo permite que los demas microservicios se encuentren por nombre.
+
+## Pruebas con Thunder Client
+
+Este servicio no recibe JSON ni expone CRUD de negocio. Para comprobar que funciona, abrir:
+
+```text
+GET http://localhost:8761
+```
+
+Normalmente se revisa desde el navegador, porque Eureka muestra una consola HTML con los servicios registrados.
+
+Orden recomendado:
+
+1. Levantar `discovery-service`.
+2. Levantar `gateway-service`.
+3. Levantar los microservicios.
+4. Verificar en `http://localhost:8761` que aparezcan registrados.

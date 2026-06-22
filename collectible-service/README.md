@@ -129,3 +129,39 @@ spring:
 ```
 
 Si tu MySQL tiene password, escribirla en `password`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/collectibles
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8089/collectibles
+```
+
+En Thunder Client seleccionar `Body > JSON` y enviar:
+
+```json
+{
+  "userId": 1,
+  "gameId": 1,
+  "name": "Primera victoria",
+  "description": "Ganar la primera partida competitiva",
+  "rarity": "RARE"
+}
+```
+
+Peticiones utiles:
+
+- `POST http://localhost:8080/collectibles`
+- `GET http://localhost:8080/collectibles`
+- `GET http://localhost:8080/collectibles/1`
+- `PUT http://localhost:8080/collectibles/1`
+- `DELETE http://localhost:8080/collectibles/1`
+
+El `userId` debe existir en `user-service` y el `gameId` en `game-service`. Rarezas validas: `COMMON`, `RARE`, `EPIC`, `LEGENDARY`.

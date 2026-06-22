@@ -133,3 +133,39 @@ spring:
 ```
 
 Si tu MySQL tiene password, escribirla en `password`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/notifications
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8087/notifications
+```
+
+En Thunder Client seleccionar `Body > JSON` y enviar:
+
+```json
+{
+  "userId": 1,
+  "title": "Nuevo comentario",
+  "message": "Alguien comento tu publicacion",
+  "type": "COMMENT",
+  "read": false
+}
+```
+
+Peticiones utiles:
+
+- `POST http://localhost:8080/notifications`
+- `GET http://localhost:8080/notifications`
+- `GET http://localhost:8080/notifications/1`
+- `PUT http://localhost:8080/notifications/1`
+- `DELETE http://localhost:8080/notifications/1`
+
+El `userId` debe existir en `user-service`. Tipos validos: `MESSAGE`, `COMMENT`, `COMMUNITY_INVITE`, `FRIEND_REQUEST`.

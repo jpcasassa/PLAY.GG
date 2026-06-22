@@ -95,3 +95,49 @@ Que editar segun el cambio:
 - Cambiar puerto: editar `server.port` en `application.yml`.
 - Cambiar nombre registrado en Eureka: editar `spring.application.name`.
 - Cambiar comunicacion con usuarios: editar `client/UserClient.java`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/auth
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8082/auth
+```
+
+Registro:
+
+```text
+POST http://localhost:8080/auth/register
+```
+
+```json
+{
+  "nickname": "playerOne",
+  "firstName": "Juan",
+  "lastName": "Perez",
+  "email": "juan@mail.com",
+  "password": "12345678",
+  "country": "Chile"
+}
+```
+
+Login:
+
+```text
+POST http://localhost:8080/auth/login
+```
+
+```json
+{
+  "email": "juan@mail.com",
+  "password": "12345678"
+}
+```
+
+Antes de probar por Gateway deben estar levantados `discovery-service`, `gateway-service`, `user-service` y `auth-service`.

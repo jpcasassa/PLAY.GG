@@ -128,3 +128,38 @@ spring:
 ```
 
 Si tu MySQL tiene password, escribirla en `password`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/games
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8088/games
+```
+
+En Thunder Client seleccionar `Body > JSON` y enviar:
+
+```json
+{
+  "title": "Valorant",
+  "genre": "Shooter",
+  "platform": "PC",
+  "multiplayer": true,
+  "competitive": true,
+  "imageUrl": "https://example.com/valorant.jpg"
+}
+```
+
+Peticiones utiles:
+
+- `POST http://localhost:8080/games`
+- `GET http://localhost:8080/games`
+- `GET http://localhost:8080/games/1`
+- `PUT http://localhost:8080/games/1`
+- `DELETE http://localhost:8080/games/1`

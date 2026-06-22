@@ -127,3 +127,43 @@ spring:
 ```
 
 Si tu MySQL tiene password, escribirla en `password`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/profiles
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8083/profiles
+```
+
+En Thunder Client seleccionar `Body > JSON` y enviar:
+
+```json
+{
+  "userId": 1,
+  "avatarUrl": "https://example.com/avatar.png",
+  "bannerUrl": "https://example.com/banner.png",
+  "bio": "Jugador competitivo de FPS",
+  "steamUsername": "playerSteam",
+  "discordUsername": "playerOne#1234",
+  "favoriteGameId": 1,
+  "rank": "Gold",
+  "level": 12
+}
+```
+
+Peticiones utiles:
+
+- `POST http://localhost:8080/profiles`
+- `GET http://localhost:8080/profiles`
+- `GET http://localhost:8080/profiles/1`
+- `PUT http://localhost:8080/profiles/1`
+- `DELETE http://localhost:8080/profiles/1`
+
+El `userId` debe existir en `user-service`. Si se envia `favoriteGameId`, tambien debe existir en `game-service`.

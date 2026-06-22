@@ -138,3 +138,42 @@ spring:
 ```
 
 Si tu MySQL tiene password, escribirla en `password`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/users
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8081/users
+```
+
+En Thunder Client seleccionar `Body > JSON` y enviar:
+
+```json
+{
+  "nickname": "playerOne",
+  "firstName": "Juan",
+  "lastName": "Perez",
+  "email": "juan@mail.com",
+  "password": "12345678",
+  "country": "Chile",
+  "role": "PLAYER",
+  "active": true
+}
+```
+
+Peticiones utiles:
+
+- `POST http://localhost:8080/users`
+- `GET http://localhost:8080/users`
+- `GET http://localhost:8080/users/1`
+- `GET http://localhost:8080/users/nickname/playerOne`
+- `GET http://localhost:8080/users/email/juan@mail.com`
+- `PUT http://localhost:8080/users/1`
+- `DELETE http://localhost:8080/users/1`

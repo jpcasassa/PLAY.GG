@@ -135,3 +135,55 @@ spring:
 ```
 
 Si tu MySQL tiene password, escribirla en `password`.
+
+## Pruebas con Thunder Client
+
+Usar preferentemente Gateway:
+
+```text
+http://localhost:8080/communities
+```
+
+Tambien se puede probar directo si el servicio esta levantado:
+
+```text
+http://localhost:8085/communities
+```
+
+Crear comunidad:
+
+```text
+POST http://localhost:8080/communities
+```
+
+```json
+{
+  "ownerId": 1,
+  "name": "Ranked Night",
+  "description": "Comunidad para jugar ranked en la noche",
+  "bannerUrl": "https://example.com/banner.jpg"
+}
+```
+
+Agregar miembro:
+
+```text
+POST http://localhost:8080/communities/1/members
+```
+
+```json
+{
+  "userId": 2,
+  "role": "MEMBER"
+}
+```
+
+Peticiones utiles:
+
+- `GET http://localhost:8080/communities`
+- `GET http://localhost:8080/communities/1`
+- `PUT http://localhost:8080/communities/1`
+- `DELETE http://localhost:8080/communities/1`
+- `GET http://localhost:8080/communities/1/members`
+
+`ownerId` y `userId` deben existir en `user-service`. Roles validos: `OWNER`, `MODERATOR`, `MEMBER`.

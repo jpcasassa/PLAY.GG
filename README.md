@@ -160,25 +160,19 @@ src/main/java/com/playgg/[servicio]/
 
 1. Iniciar MySQL desde XAMPP.
 2. Verificar usuario y password en los `application.yml`.
-3. Compilar el proyecto completo:
-
-```bash
-mvn clean package -DskipTests
-```
-
-4. Levantar primero Eureka:
+3. Levantar primero Eureka:
 
 ```bash
 mvn -pl discovery-service spring-boot:run
 ```
 
-5. Levantar Gateway:
+4. Levantar Gateway:
 
 ```bash
 mvn -pl gateway-service spring-boot:run
 ```
 
-6. Levantar los servicios de dominio que se quieran probar. Para una presentacion completa, este orden es el mas comodo:
+5. Levantar los servicios de dominio que se quieran probar. Para una presentacion completa, este orden es el mas comodo:
 
 ```bash
 mvn -pl user-service spring-boot:run
@@ -192,9 +186,23 @@ mvn -pl notification-service spring-boot:run
 mvn -pl collectible-service spring-boot:run
 ```
 
-7. Abrir Eureka en `http://localhost:8761` y confirmar que los servicios aparezcan registrados.
+6. Abrir Eureka en `http://localhost:8761` y confirmar que los servicios aparezcan registrados.
 
-8. Probar la API desde el Gateway en `http://localhost:8080`. Por ejemplo, `POST http://localhost:8080/auth/register` o `GET http://localhost:8080/users`.
+7. Probar la API desde el Gateway en `http://localhost:8080`. Por ejemplo, `POST http://localhost:8080/auth/register` o `GET http://localhost:8080/users`.
+
+No es necesario compilar manualmente antes de levantar los servicios. Al ejecutar cada servicio con `spring-boot:run`, Maven compila lo necesario automaticamente.
+
+## Pruebas automaticas
+
+Todos los modulos heredan `spring-boot-starter-test` desde el POM padre y tienen carpeta `src/test/java` preparada para agregar pruebas.
+
+Para ejecutar la fase de test en todo el proyecto:
+
+```bash
+mvn test
+```
+
+Actualmente la estructura esta lista y el comando compila los modulos, pero todavia no hay clases de prueba reales.
 
 ## Guia rapida para presentacion
 

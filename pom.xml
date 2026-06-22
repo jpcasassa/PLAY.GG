@@ -44,6 +44,14 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <!-- Dependencia base para pruebas unitarias e integracion en todos los modulos. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <build>
         <pluginManagement>
             <plugins>
