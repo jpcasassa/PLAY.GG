@@ -177,3 +177,26 @@ Peticiones utiles:
 - `GET http://localhost:8080/users/email/juan@mail.com`
 - `PUT http://localhost:8080/users/1`
 - `DELETE http://localhost:8080/users/1`
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/user/service/UserServiceTest.java`.
+
+La clase probada es `UserService`. Se mockea solo `UserRepository`, por lo que no se usa base de datos real ni se levanta Spring Boot.
+
+Los tests cubren:
+
+- Crear usuario correctamente.
+- Buscar usuarios correctamente.
+- Actualizar usuario correctamente.
+- Eliminar usuario correctamente.
+- Manejar errores cuando el usuario no existe.
+- Manejar errores cuando el nickname ya existe.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada, sin MySQL ni comunicacion externa.
+
+Para ejecutar:
+
+```bash
+mvn test
+```

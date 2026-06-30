@@ -167,3 +167,26 @@ Peticiones utiles:
 - `DELETE http://localhost:8080/profiles/1`
 
 El `userId` debe existir en `user-service`. Si se envia `favoriteGameId`, tambien debe existir en `game-service`.
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/profile/service/ProfileServiceTest.java`.
+
+La clase probada es `ProfileService`. Se mockean solo `ProfileRepository`, `UserClient` y `GameClient`, por lo que no se usa base de datos real ni llamadas HTTP reales.
+
+Los tests cubren:
+
+- Crear perfil correctamente.
+- Buscar perfiles correctamente.
+- Actualizar perfil correctamente.
+- Eliminar perfil correctamente.
+- Manejar errores cuando el perfil no existe.
+- Validar que `favoriteGameId` opcional no llame a `game-service` cuando es nulo.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada.
+
+Para ejecutar:
+
+```bash
+mvn test
+```

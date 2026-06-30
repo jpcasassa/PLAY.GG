@@ -192,17 +192,45 @@ mvn -pl collectible-service spring-boot:run
 
 No es necesario compilar manualmente antes de levantar los servicios. Al ejecutar cada servicio con `spring-boot:run`, Maven compila lo necesario automaticamente.
 
-## Pruebas automaticas
+## Pruebas Unitarias
 
-Todos los modulos heredan `spring-boot-starter-test` desde el POM padre y tienen carpeta `src/test/java` preparada para agregar pruebas.
+Todos los modulos heredan `spring-boot-starter-test` desde el POM padre, por lo que el proyecto usa JUnit 5 y Mockito sin agregar dependencias innecesarias.
 
-Para ejecutar la fase de test en todo el proyecto:
+JUnit 5 se usa como framework de pruebas. Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. Por ejemplo, un `Service` puede probarse usando un `Repository` mockeado, sin conectarse a MySQL. En una arquitectura de microservicios esto es importante porque permite validar la logica de negocio sin levantar otros servicios ni hacer llamadas HTTP reales.
+
+Las pruebas unitarias se encuentran en `src/test/java`, manteniendo el mismo package de `src/main/java`. No usan `@SpringBootTest`; trabajan con `@ExtendWith(MockitoExtension.class)`, `@Mock`, `@InjectMocks`, `when(...)`, `verify(...)`, `assertEquals`, `assertThrows` y `assertNotNull`.
+
+Clases con pruebas unitarias:
+
+- `auth-service`: `AuthServiceTest`
+- `user-service`: `UserServiceTest`
+- `profile-service`: `ProfileServiceTest`
+- `forum-service`: `PostServiceTest` y `CommentServiceTest`
+- `community-service`: `CommunityServiceTest`
+- `chat-service`: `MessageServiceTest`
+- `notification-service`: `NotificationServiceTest`
+- `game-service`: `GameServiceTest`
+- `collectible-service`: `CollectibleServiceTest`
+
+Las pruebas cubren casos principales de crear, buscar, actualizar, eliminar y manejo de errores donde corresponde. Tambien verifican que los clientes Feign se usen como mocks, evitando llamadas reales entre microservicios.
+
+Lo que falta:
+
+- `discovery-service` no tiene pruebas unitarias de Service porque funciona como servidor Eureka y no posee CRUD de negocio.
+- `gateway-service` no tiene pruebas unitarias de Service porque su responsabilidad principal es enrutar peticiones con Spring Cloud Gateway.
+- Si mas adelante se agregan reglas propias en esos modulos, se pueden crear pruebas unitarias para esas clases.
+
+Para ejecutar todos los tests del proyecto:
 
 ```bash
 mvn test
 ```
 
-Actualmente la estructura esta lista y el comando compila los modulos, pero todavia no hay clases de prueba reales.
+Tambien se puede ejecutar un modulo especifico:
+
+```bash
+mvn -pl user-service test
+```
 
 ## Guia rapida para presentacion
 

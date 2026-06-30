@@ -163,3 +163,25 @@ Peticiones utiles:
 - `GET http://localhost:8080/games/1`
 - `PUT http://localhost:8080/games/1`
 - `DELETE http://localhost:8080/games/1`
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/game/service/GameServiceTest.java`.
+
+La clase probada es `GameService`. Se mockea solo `GameRepository`, por lo que no se usa base de datos real ni se levanta Spring Boot.
+
+Los tests cubren:
+
+- Crear juego correctamente.
+- Buscar juegos correctamente.
+- Actualizar juego correctamente.
+- Eliminar juego correctamente.
+- Manejar errores cuando el juego no existe.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada.
+
+Para ejecutar:
+
+```bash
+mvn test
+```

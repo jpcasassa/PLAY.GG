@@ -165,3 +165,26 @@ Peticiones utiles:
 - `DELETE http://localhost:8080/collectibles/1`
 
 El `userId` debe existir en `user-service` y el `gameId` en `game-service`. Rarezas validas: `COMMON`, `RARE`, `EPIC`, `LEGENDARY`.
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/collectible/service/CollectibleServiceTest.java`.
+
+La clase probada es `CollectibleService`. Se mockean solo `CollectibleRepository`, `UserClient` y `GameClient`, por lo que no se usa base de datos real ni llamadas HTTP reales.
+
+Los tests cubren:
+
+- Crear coleccionable correctamente.
+- Buscar coleccionables correctamente.
+- Actualizar coleccionable correctamente.
+- Eliminar coleccionable correctamente.
+- Manejar errores cuando el coleccionable no existe.
+- Validar usuario y juego mediante mocks de Feign.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada.
+
+Para ejecutar:
+
+```bash
+mvn test
+```

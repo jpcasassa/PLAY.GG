@@ -64,3 +64,22 @@ Orden recomendado:
 2. Levantar `gateway-service`.
 3. Levantar los microservicios.
 4. Verificar en `http://localhost:8761` que aparezcan registrados.
+
+## Pruebas Unitarias
+
+Este modulo hereda JUnit 5 y Mockito desde el POM padre, igual que el resto del proyecto.
+
+Actualmente `discovery-service` no tiene una clase `Service` de negocio ni CRUD propio para probar de forma unitaria. Su responsabilidad principal es levantar Eureka Server mediante configuracion de Spring Cloud.
+
+Lo que falta:
+
+- No hay pruebas unitarias especificas para este modulo porque no existe logica de negocio aislable.
+- Si mas adelante se agrega una clase propia con reglas o validaciones, se debe crear su test en `src/test/java/com/playgg/discovery`.
+
+Mockito se usa en los microservicios de negocio para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test.
+
+Para ejecutar todos los tests del proyecto:
+
+```bash
+mvn test
+```

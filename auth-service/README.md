@@ -141,3 +141,25 @@ POST http://localhost:8080/auth/login
 ```
 
 Antes de probar por Gateway deben estar levantados `discovery-service`, `gateway-service`, `user-service` y `auth-service`.
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/auth/service/AuthServiceTest.java`.
+
+La clase probada es `AuthService`. Se mockea solo `UserClient`, por lo que no se realizan llamadas HTTP reales a `user-service` ni se levanta Spring Boot.
+
+Los tests cubren:
+
+- Registrar usuario correctamente.
+- Iniciar sesion correctamente.
+- Manejar error cuando `user-service` no devuelve usuario al registrar.
+- Manejar error por password incorrecta.
+- Manejar error cuando el usuario esta inactivo.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada, sin depender de otros servicios.
+
+Para ejecutar:
+
+```bash
+mvn test
+```

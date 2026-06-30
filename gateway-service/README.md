@@ -78,3 +78,22 @@ Ejemplos:
 - `POST http://localhost:8080/collectibles`
 
 Para probar por Gateway deben estar levantados `discovery-service`, `gateway-service` y el servicio destino.
+
+## Pruebas Unitarias
+
+Este modulo hereda JUnit 5 y Mockito desde el POM padre, igual que el resto del proyecto.
+
+Actualmente `gateway-service` no tiene una clase `Service` de negocio ni CRUD propio para probar de forma unitaria. Su responsabilidad principal esta en la configuracion de rutas con Spring Cloud Gateway.
+
+Lo que falta:
+
+- No hay pruebas unitarias especificas para este modulo porque no existe logica de negocio aislable.
+- Si mas adelante se agregan filtros, validaciones o reglas propias, se deben crear tests unitarios en `src/test/java/com/playgg/gateway`.
+
+Mockito se usa en los microservicios de negocio para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test.
+
+Para ejecutar todos los tests del proyecto:
+
+```bash
+mvn test
+```

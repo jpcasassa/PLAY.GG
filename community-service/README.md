@@ -187,3 +187,27 @@ Peticiones utiles:
 - `GET http://localhost:8080/communities/1/members`
 
 `ownerId` y `userId` deben existir en `user-service`. Roles validos: `OWNER`, `MODERATOR`, `MEMBER`.
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/community/service/CommunityServiceTest.java`.
+
+La clase probada es `CommunityService`. Se mockean solo `CommunityRepository`, `CommunityMemberRepository` y `UserClient`, por lo que no se usa base de datos real ni llamadas HTTP reales.
+
+Los tests cubren:
+
+- Crear comunidad correctamente.
+- Buscar comunidades correctamente.
+- Actualizar comunidad correctamente.
+- Eliminar comunidad correctamente.
+- Agregar miembro correctamente.
+- Manejar errores cuando la comunidad no existe.
+- Manejar errores cuando el nombre de comunidad ya existe.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada.
+
+Para ejecutar:
+
+```bash
+mvn test
+```

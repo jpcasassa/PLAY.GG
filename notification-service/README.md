@@ -169,3 +169,26 @@ Peticiones utiles:
 - `DELETE http://localhost:8080/notifications/1`
 
 El `userId` debe existir en `user-service`. Tipos validos: `MESSAGE`, `COMMENT`, `COMMUNITY_INVITE`, `FRIEND_REQUEST`.
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/notification/service/NotificationServiceTest.java`.
+
+La clase probada es `NotificationService`. Se mockean solo `NotificationRepository` y `UserClient`, por lo que no se usa base de datos real ni llamadas HTTP reales.
+
+Los tests cubren:
+
+- Crear notificacion correctamente.
+- Buscar notificaciones correctamente.
+- Actualizar notificacion correctamente.
+- Eliminar notificacion correctamente.
+- Manejar errores cuando la notificacion no existe.
+- Validar el usuario mediante mock de `UserClient`.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada.
+
+Para ejecutar:
+
+```bash
+mvn test
+```

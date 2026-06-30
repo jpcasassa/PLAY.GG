@@ -190,3 +190,30 @@ Peticiones utiles:
 - `GET http://localhost:8080/comments/post/1`
 
 El `userId` debe existir en `user-service`. Para comentar, el `postId` debe existir en `forum-service`.
+
+## Pruebas Unitarias
+
+Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en:
+
+- `src/test/java/com/playgg/forum/service/PostServiceTest.java`
+- `src/test/java/com/playgg/forum/service/CommentServiceTest.java`
+
+Las clases probadas son `PostService` y `CommentService`. Se mockean solo `PostRepository`, `CommentRepository` y `UserClient`, por lo que no se usa base de datos real ni llamadas HTTP reales.
+
+Los tests cubren:
+
+- Crear post correctamente.
+- Buscar posts correctamente.
+- Actualizar post correctamente.
+- Eliminar post correctamente.
+- Crear comentario correctamente.
+- Listar comentarios por post.
+- Manejar errores cuando el post no existe.
+
+Mockito se usa para crear mocks, que son objetos simulados que reemplazan dependencias reales durante el test. En microservicios esto permite probar la logica de negocio de forma aislada.
+
+Para ejecutar:
+
+```bash
+mvn test
+```
