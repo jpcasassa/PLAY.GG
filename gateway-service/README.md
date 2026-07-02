@@ -79,6 +79,16 @@ Ejemplos:
 
 Para probar por Gateway deben estar levantados `discovery-service`, `gateway-service` y el servicio destino.
 
+## Swagger
+
+`gateway-service` no tiene Swagger propio porque no expone CRUD de negocio. Para probar con JSON manual se usa Gateway en `http://localhost:8080`. Para probar con Swagger se debe abrir la URL del microservicio REST directo, por ejemplo:
+
+```text
+http://localhost:8081/swagger-ui.html
+```
+
+Cada README de servicio indica su URL de Swagger correspondiente.
+
 ## Pruebas Unitarias
 
 Este modulo hereda JUnit 5 y Mockito desde el POM padre, igual que el resto del proyecto.

@@ -65,6 +65,20 @@ Orden recomendado:
 3. Levantar los microservicios.
 4. Verificar en `http://localhost:8761` que aparezcan registrados.
 
+## Swagger
+
+`discovery-service` no tiene Swagger propio porque no expone endpoints REST de negocio ni recibe JSON. Su forma de uso es la consola de Eureka:
+
+```text
+http://localhost:8761
+```
+
+Para probar endpoints con JSON manual se usa Gateway (`http://localhost:8080`). Para probar con Swagger se abre el puerto directo de cada microservicio REST, por ejemplo:
+
+```text
+http://localhost:8081/swagger-ui.html
+```
+
 ## Pruebas Unitarias
 
 Este modulo hereda JUnit 5 y Mockito desde el POM padre, igual que el resto del proyecto.

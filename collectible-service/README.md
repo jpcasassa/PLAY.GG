@@ -166,6 +166,27 @@ Peticiones utiles:
 
 El `userId` debe existir en `user-service` y el `gameId` en `game-service`. Rarezas validas: `COMMON`, `RARE`, `EPIC`, `LEGENDARY`.
 
+## Pruebas con Swagger
+
+Este servicio tambien se puede probar desde Swagger UI.
+
+1. Levantar `discovery-service`.
+2. Levantar `user-service` y `game-service` si se van a validar ids externos.
+3. Levantar `collectible-service`.
+4. Abrir:
+
+```text
+http://localhost:8089/swagger-ui.html
+```
+
+Tambien se puede ver la especificacion OpenAPI en:
+
+```text
+http://localhost:8089/v3/api-docs
+```
+
+En Swagger abrir el endpoint, presionar `Try it out`, completar el JSON cuando corresponda y ejecutar con `Execute`.
+
 ## Pruebas Unitarias
 
 Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/collectible/service/CollectibleServiceTest.java`.

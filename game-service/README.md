@@ -164,6 +164,26 @@ Peticiones utiles:
 - `PUT http://localhost:8080/games/1`
 - `DELETE http://localhost:8080/games/1`
 
+## Pruebas con Swagger
+
+Este servicio tambien se puede probar desde Swagger UI.
+
+1. Levantar `discovery-service`.
+2. Levantar `game-service`.
+3. Abrir:
+
+```text
+http://localhost:8088/swagger-ui.html
+```
+
+Tambien se puede ver la especificacion OpenAPI en:
+
+```text
+http://localhost:8088/v3/api-docs
+```
+
+En Swagger abrir el endpoint, presionar `Try it out`, completar el JSON cuando corresponda y ejecutar con `Execute`.
+
 ## Pruebas Unitarias
 
 Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/game/service/GameServiceTest.java`.

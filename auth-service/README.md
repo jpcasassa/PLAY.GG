@@ -142,6 +142,27 @@ POST http://localhost:8080/auth/login
 
 Antes de probar por Gateway deben estar levantados `discovery-service`, `gateway-service`, `user-service` y `auth-service`.
 
+## Pruebas con Swagger
+
+Este servicio tambien se puede probar desde Swagger UI.
+
+1. Levantar `discovery-service`.
+2. Levantar `user-service`.
+3. Levantar `auth-service`.
+4. Abrir:
+
+```text
+http://localhost:8082/swagger-ui.html
+```
+
+Tambien se puede ver la especificacion OpenAPI en:
+
+```text
+http://localhost:8082/v3/api-docs
+```
+
+En Swagger abrir `/auth/register` o `/auth/login`, presionar `Try it out`, completar el JSON y ejecutar con `Execute`. Estos endpoints y las rutas de Swagger estan permitidos en Spring Security.
+
 ## Pruebas Unitarias
 
 Este microservicio tiene pruebas unitarias con JUnit 5 y Mockito en `src/test/java/com/playgg/auth/service/AuthServiceTest.java`.

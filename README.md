@@ -76,6 +76,7 @@ Las relaciones JPA se usan solo dentro del mismo microservicio. Ejemplos:
 - Spring Data JPA / Hibernate
 - MySQL
 - Bean Validation
+- Springdoc OpenAPI / Swagger UI
 - Lombok
 - Maven Multi-Module
 
@@ -248,6 +249,61 @@ Para mostrar el flujo de datos de forma clara, conviene ingresar datos por Postm
 | 8 | `POST /messages` | `chat-service` valida emisor y receptor por Feign | `playgg_chat_db.messages` |
 | 9 | `POST /notifications` | `notification-service` valida `userId` por Feign | `playgg_notifications_db.notifications` |
 | 10 | `POST /collectibles` | `collectible-service` valida `userId` y `gameId` por Feign | `playgg_collectibles_db.collectibles` |
+
+## Dos formas de probar la API
+
+### Metodo 1: JSON manual por Gateway
+
+Este es el metodo recomendado para probar el flujo completo de microservicios. Se usa Thunder Client, Postman o Insomnia apuntando al Gateway:
+
+```text
+http://localhost:8080
+```
+
+En cada peticion `POST` o `PUT` se selecciona `Body > JSON` y se pega el JSON correspondiente. Ejemplo:
+
+```text
+POST http://localhost:8080/auth/register
+```
+
+```json
+{
+  "nickname": "playerOne",
+  "firstName": "Juan",
+  "lastName": "Perez",
+  "email": "juan@mail.com",
+  "password": "12345678",
+  "country": "Chile"
+}
+```
+
+### Metodo 2: Swagger UI por microservicio
+
+Swagger permite ver y ejecutar los endpoints desde el navegador. En este proyecto se habilito Swagger solo en los microservicios REST de dominio:
+
+| Servicio | Swagger UI | OpenAPI JSON |
+| --- | --- | --- |
+| `user-service` | `http://localhost:8081/swagger-ui.html` | `http://localhost:8081/v3/api-docs` |
+| `auth-service` | `http://localhost:8082/swagger-ui.html` | `http://localhost:8082/v3/api-docs` |
+| `profile-service` | `http://localhost:8083/swagger-ui.html` | `http://localhost:8083/v3/api-docs` |
+| `forum-service` | `http://localhost:8084/swagger-ui.html` | `http://localhost:8084/v3/api-docs` |
+| `community-service` | `http://localhost:8085/swagger-ui.html` | `http://localhost:8085/v3/api-docs` |
+| `chat-service` | `http://localhost:8086/swagger-ui.html` | `http://localhost:8086/v3/api-docs` |
+| `notification-service` | `http://localhost:8087/swagger-ui.html` | `http://localhost:8087/v3/api-docs` |
+| `game-service` | `http://localhost:8088/swagger-ui.html` | `http://localhost:8088/v3/api-docs` |
+| `collectible-service` | `http://localhost:8089/swagger-ui.html` | `http://localhost:8089/v3/api-docs` |
+
+Para usar Swagger:
+
+1. Levantar Eureka.
+2. Levantar el microservicio que se quiere probar.
+3. Abrir la URL `swagger-ui.html` del servicio.
+4. Elegir un endpoint.
+5. Presionar `Try it out`.
+6. Completar el JSON si el endpoint recibe body.
+7. Presionar `Execute`.
+
+`gateway-service` y `discovery-service` no tienen Swagger propio. Gateway se usa para el metodo manual con JSON; Swagger se abre directo en el puerto de cada microservicio REST.
 
 Ejemplo de registro:
 
