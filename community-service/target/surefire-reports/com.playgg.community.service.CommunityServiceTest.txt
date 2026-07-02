@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.playgg.community.service.CommunityServiceTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.720 s -- in com.playgg.community.service.CommunityServiceTest

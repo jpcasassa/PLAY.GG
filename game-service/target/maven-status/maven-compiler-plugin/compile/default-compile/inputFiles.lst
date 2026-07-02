@@ -1,11 +1,11 @@
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\controller\GameController.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\dto\CreateGameDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\dto\GameResponseDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\dto\UpdateGameDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\exception\ApiError.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\exception\GlobalExceptionHandler.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\exception\ResourceNotFoundException.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\GameServiceApplication.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\model\Game.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\repository\GameRepository.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\game-service\src\main\java\com\playgg\game\service\GameService.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\controller\GameController.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\dto\CreateGameDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\dto\GameResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\dto\UpdateGameDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\exception\ApiError.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\exception\GlobalExceptionHandler.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\exception\ResourceNotFoundException.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\GameServiceApplication.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\model\Game.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\repository\GameRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\game-service\src\main\java\com\playgg\game\service\GameService.java

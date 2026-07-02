@@ -1,13 +1,13 @@
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\client\GameClient.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\client\UserClient.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\controller\ProfileController.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\dto\CreateProfileDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\dto\ProfileResponseDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\dto\UpdateProfileDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\exception\ApiError.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\exception\GlobalExceptionHandler.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\exception\ResourceNotFoundException.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\model\Profile.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\ProfileServiceApplication.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\repository\ProfileRepository.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\profile-service\src\main\java\com\playgg\profile\service\ProfileService.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\client\GameClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\client\UserClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\controller\ProfileController.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\dto\CreateProfileDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\dto\ProfileResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\dto\UpdateProfileDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\exception\ApiError.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\exception\GlobalExceptionHandler.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\exception\ResourceNotFoundException.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\model\Profile.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\ProfileServiceApplication.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\repository\ProfileRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\profile-service\src\main\java\com\playgg\profile\service\ProfileService.java

@@ -1,17 +1,17 @@
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\client\UserClient.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\CommunityServiceApplication.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\controller\CommunityController.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\AddMemberDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\CommunityMemberResponseDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\CommunityResponseDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\CreateCommunityDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\UpdateCommunityDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\exception\ApiError.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\exception\GlobalExceptionHandler.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\exception\ResourceNotFoundException.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\model\Community.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\model\CommunityMember.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\model\CommunityRole.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\repository\CommunityMemberRepository.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\repository\CommunityRepository.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\community-service\src\main\java\com\playgg\community\service\CommunityService.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\client\UserClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\CommunityServiceApplication.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\controller\CommunityController.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\AddMemberDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\CommunityMemberResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\CommunityResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\CreateCommunityDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\dto\UpdateCommunityDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\exception\ApiError.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\exception\GlobalExceptionHandler.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\exception\ResourceNotFoundException.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\model\Community.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\model\CommunityMember.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\model\CommunityRole.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\repository\CommunityMemberRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\repository\CommunityRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\community-service\src\main\java\com\playgg\community\service\CommunityService.java

@@ -1,14 +1,14 @@
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\client\GameClient.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\client\UserClient.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\CollectibleServiceApplication.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\controller\CollectibleController.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\dto\CollectibleResponseDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\dto\CreateCollectibleDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\dto\UpdateCollectibleDTO.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\exception\ApiError.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\exception\GlobalExceptionHandler.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\exception\ResourceNotFoundException.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\model\Collectible.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\model\Rarity.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\repository\CollectibleRepository.java
-C:\Users\Servicios Digitales\Desktop\Play.GG_FS\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\service\CollectibleService.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\client\GameClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\client\UserClient.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\CollectibleServiceApplication.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\controller\CollectibleController.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\dto\CollectibleResponseDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\dto\CreateCollectibleDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\dto\UpdateCollectibleDTO.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\exception\ApiError.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\exception\GlobalExceptionHandler.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\exception\ResourceNotFoundException.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\model\Collectible.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\model\Rarity.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\repository\CollectibleRepository.java
+C:\Users\R1L4Y\Instituto\3erSemestre\FullStack1\Proyecto\PLAY.GG\collectible-service\src\main\java\com\playgg\collectible\service\CollectibleService.java
