@@ -80,6 +80,93 @@ Las relaciones JPA se usan solo dentro del mismo microservicio. Ejemplos:
 - Lombok
 - Maven Multi-Module
 
+## Docker
+
+Docker es una herramienta que permite empaquetar una aplicacion con su entorno de ejecucion en una imagen. Esa imagen se ejecuta como un contenedor, que es un proceso aislado y reproducible. En este proyecto sirve para levantar cada microservicio con Java 17 sin depender de tener Java o Maven configurados manualmente en la maquina donde se ejecuta.
+
+Cada microservicio tiene su propio `Dockerfile` y su propio `.dockerignore`. Los Dockerfile usan una construccion multi-stage:
+
+- una etapa Maven con `maven:3.9.9-eclipse-temurin-17` para compilar el JAR;
+- una etapa runtime con `eclipse-temurin:17-jre` para ejecutar el microservicio.
+
+Los comandos se ejecutan desde la raiz del proyecto `PLAY.GG`, porque cada modulo necesita resolver el `pom.xml` padre.
+
+### Construir imagenes Docker
+
+```bash
+docker build -f discovery-service/Dockerfile -t playgg/discovery-service:latest .
+docker build -f gateway-service/Dockerfile -t playgg/gateway-service:latest .
+docker build -f user-service/Dockerfile -t playgg/user-service:latest .
+docker build -f auth-service/Dockerfile -t playgg/auth-service:latest .
+docker build -f profile-service/Dockerfile -t playgg/profile-service:latest .
+docker build -f forum-service/Dockerfile -t playgg/forum-service:latest .
+docker build -f community-service/Dockerfile -t playgg/community-service:latest .
+docker build -f chat-service/Dockerfile -t playgg/chat-service:latest .
+docker build -f notification-service/Dockerfile -t playgg/notification-service:latest .
+docker build -f game-service/Dockerfile -t playgg/game-service:latest .
+docker build -f collectible-service/Dockerfile -t playgg/collectible-service:latest .
+```
+
+Para construir todas las imagenes en PowerShell:
+
+```powershell
+$services = @(
+  "discovery-service",
+  "gateway-service",
+  "user-service",
+  "auth-service",
+  "profile-service",
+  "forum-service",
+  "community-service",
+  "chat-service",
+  "notification-service",
+  "game-service",
+  "collectible-service"
+)
+
+foreach ($service in $services) {
+  docker build -f "$service/Dockerfile" -t "playgg/${service}:latest" .
+}
+```
+
+### Ejecutar un microservicio individual con Docker
+
+Cada contenedor expone el mismo puerto configurado en su `application.yml`. Ejemplos:
+
+```bash
+docker run --name discovery-service --rm -p 8761:8761 playgg/discovery-service:latest
+docker run --name gateway-service --rm -p 8080:8080 playgg/gateway-service:latest
+docker run --name user-service --rm -p 8081:8081 playgg/user-service:latest
+docker run --name auth-service --rm -p 8082:8082 playgg/auth-service:latest
+docker run --name profile-service --rm -p 8083:8083 playgg/profile-service:latest
+docker run --name forum-service --rm -p 8084:8084 playgg/forum-service:latest
+docker run --name community-service --rm -p 8085:8085 playgg/community-service:latest
+docker run --name chat-service --rm -p 8086:8086 playgg/chat-service:latest
+docker run --name notification-service --rm -p 8087:8087 playgg/notification-service:latest
+docker run --name game-service --rm -p 8088:8088 playgg/game-service:latest
+docker run --name collectible-service --rm -p 8089:8089 playgg/collectible-service:latest
+```
+
+Si el microservicio necesita conectarse a MySQL instalado en la maquina anfitriona, en Docker Desktop se puede usar `host.docker.internal` como host de base de datos. Por ejemplo:
+
+```bash
+docker run --name user-service --rm -p 8081:8081 ^
+  -e SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/playgg_users_db?createDatabaseIfNotExist=true ^
+  -e SPRING_DATASOURCE_USERNAME=root ^
+  -e SPRING_DATASOURCE_PASSWORD= ^
+  playgg/user-service:latest
+```
+
+Para que un servicio se registre en Eureka ejecutado tambien en Docker, primero levanta `discovery-service` y luego pasa la URL de Eureka al servicio:
+
+```bash
+docker run --name discovery-service --rm -p 8761:8761 playgg/discovery-service:latest
+
+docker run --name user-service --rm -p 8081:8081 ^
+  -e EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://host.docker.internal:8761/eureka/ ^
+  playgg/user-service:latest
+```
+
 ## Eureka y Gateway
 
 Eureka funciona como registro de servicios. Cada microservicio se registra con su nombre, por ejemplo `user-service` o `forum-service`. Esto permite que otros servicios los encuentren por nombre sin depender de una URL fija.
