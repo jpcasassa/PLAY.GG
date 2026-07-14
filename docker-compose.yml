@@ -1,0 +1,276 @@
+name: playgg
+
+x-common-service: &common-service
+  networks:
+    - playgg-network
+  restart: unless-stopped
+  environment: &common-environment
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-service:8761/eureka/
+    EUREKA_INSTANCE_PREFER_IP_ADDRESS: "true"
+  depends_on:
+    discovery-service:
+      condition: service_started
+
+x-database-service: &database-service
+  <<: *common-service
+  environment:
+    <<: *common-environment
+    SPRING_DATASOURCE_USERNAME: root
+    SPRING_DATASOURCE_PASSWORD: ""
+  depends_on:
+    mysql:
+      condition: service_healthy
+    discovery-service:
+      condition: service_started
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: playgg-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_HOST: "%"
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - playgg-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "--silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  discovery-service:
+    build:
+      context: .
+      dockerfile: discovery-service/Dockerfile
+    image: playgg/discovery-service:latest
+    container_name: playgg-discovery-service
+    restart: unless-stopped
+    ports:
+      - "8761:8761"
+    networks:
+      - playgg-network
+
+  gateway-service:
+    <<: *common-service
+    build:
+      context: .
+      dockerfile: gateway-service/Dockerfile
+    image: playgg/gateway-service:latest
+    container_name: playgg-gateway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+      auth-service:
+        condition: service_started
+      profile-service:
+        condition: service_started
+      forum-service:
+        condition: service_started
+      community-service:
+        condition: service_started
+      chat-service:
+        condition: service_started
+      notification-service:
+        condition: service_started
+      game-service:
+        condition: service_started
+      collectible-service:
+        condition: service_started
+
+  user-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: user-service/Dockerfile
+    image: playgg/user-service:latest
+    container_name: playgg-user-service
+    ports:
+      - "8081:8081"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_users_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+
+  auth-service:
+    <<: *common-service
+    build:
+      context: .
+      dockerfile: auth-service/Dockerfile
+    image: playgg/auth-service:latest
+    container_name: playgg-auth-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+
+  profile-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: profile-service/Dockerfile
+    image: playgg/profile-service:latest
+    container_name: playgg-profile-service
+    ports:
+      - "8083:8083"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_profiles_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+    depends_on:
+      mysql:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+      game-service:
+        condition: service_started
+
+  forum-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: forum-service/Dockerfile
+    image: playgg/forum-service:latest
+    container_name: playgg-forum-service
+    ports:
+      - "8084:8084"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_forum_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+    depends_on:
+      mysql:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+
+  community-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: community-service/Dockerfile
+    image: playgg/community-service:latest
+    container_name: playgg-community-service
+    ports:
+      - "8085:8085"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_communities_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+    depends_on:
+      mysql:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+
+  chat-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: chat-service/Dockerfile
+    image: playgg/chat-service:latest
+    container_name: playgg-chat-service
+    ports:
+      - "8086:8086"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_chat_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+    depends_on:
+      mysql:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+
+  notification-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: notification-service/Dockerfile
+    image: playgg/notification-service:latest
+    container_name: playgg-notification-service
+    ports:
+      - "8087:8087"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_notifications_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+    depends_on:
+      mysql:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+
+  game-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: game-service/Dockerfile
+    image: playgg/game-service:latest
+    container_name: playgg-game-service
+    ports:
+      - "8088:8088"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_games_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+
+  collectible-service:
+    <<: *database-service
+    build:
+      context: .
+      dockerfile: collectible-service/Dockerfile
+    image: playgg/collectible-service:latest
+    container_name: playgg-collectible-service
+    ports:
+      - "8089:8089"
+    environment:
+      <<: *common-environment
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/playgg_collectibles_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ""
+    depends_on:
+      mysql:
+        condition: service_healthy
+      discovery-service:
+        condition: service_started
+      user-service:
+        condition: service_started
+      game-service:
+        condition: service_started
+
+networks:
+  playgg-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

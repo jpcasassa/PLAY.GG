@@ -167,6 +167,96 @@ docker run --name user-service --rm -p 8081:8081 ^
   playgg/user-service:latest
 ```
 
+## Docker Compose
+
+Docker Compose permite levantar toda la infraestructura declarada en `docker-compose.yml` con un solo comando. En este proyecto se usa para iniciar MySQL, Eureka, Gateway y los nueve microservicios de dominio en una misma red Docker.
+
+### Requisitos
+
+- Docker Desktop instalado y en ejecucion.
+- Docker Compose v2 disponible mediante el comando `docker compose`.
+- Puertos libres en la maquina: `3306`, `8761` y `8080` a `8089`.
+- Ejecutar los comandos desde la raiz del proyecto `PLAY.GG`.
+
+No es necesario instalar Java ni Maven localmente para levantar el entorno con Compose. Cada imagen compila su servicio usando Maven dentro del Dockerfile y luego lo ejecuta con Java 17.
+
+### Iniciar el proyecto completo
+
+Desde la raiz del proyecto:
+
+```bash
+docker compose up
+```
+
+Para construir las imagenes desde cero y luego iniciar:
+
+```bash
+docker compose up --build
+```
+
+Cuando todos los contenedores esten arriba, los accesos principales son:
+
+| Servicio | URL |
+| --- | --- |
+| Gateway | `http://localhost:8080` |
+| Eureka | `http://localhost:8761` |
+| MySQL | `localhost:3306` |
+| user-service | `http://localhost:8081` |
+| auth-service | `http://localhost:8082` |
+| profile-service | `http://localhost:8083` |
+| forum-service | `http://localhost:8084` |
+| community-service | `http://localhost:8085` |
+| chat-service | `http://localhost:8086` |
+| notification-service | `http://localhost:8087` |
+| game-service | `http://localhost:8088` |
+| collectible-service | `http://localhost:8089` |
+
+### Detener el proyecto
+
+Detener contenedores conservando la base de datos:
+
+```bash
+docker compose down
+```
+
+Detener contenedores y eliminar tambien el volumen persistente de MySQL:
+
+```bash
+docker compose down -v
+```
+
+Ver logs de todos los servicios:
+
+```bash
+docker compose logs -f
+```
+
+Ver logs de un servicio especifico:
+
+```bash
+docker compose logs -f user-service
+```
+
+### Arquitectura Docker utilizada
+
+El archivo `docker-compose.yml` crea:
+
+- una red bridge llamada `playgg-network`, donde todos los contenedores se resuelven por nombre;
+- un contenedor `mysql` con imagen `mysql:8.4`;
+- un volumen persistente `mysql-data` montado en `/var/lib/mysql`;
+- un contenedor `discovery-service` como servidor Eureka;
+- un contenedor `gateway-service` como entrada unica HTTP;
+- nueve microservicios de dominio conectados a Eureka y, cuando corresponde, a MySQL.
+
+Los servicios Spring Boot reciben variables de entorno para reemplazar las URLs locales de desarrollo:
+
+- `EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://discovery-service:8761/eureka/`
+- `SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/...`
+- `SPRING_DATASOURCE_USERNAME=root`
+- `SPRING_DATASOURCE_PASSWORD=`
+
+La comunicacion con OpenFeign se mantiene por nombres de servicio (`user-service`, `game-service`, etc.). Gateway tambien usa rutas `lb://...`, por lo que Eureka resuelve las instancias registradas dentro de la red Docker.
+
 ## Eureka y Gateway
 
 Eureka funciona como registro de servicios. Cada microservicio se registra con su nombre, por ejemplo `user-service` o `forum-service`. Esto permite que otros servicios los encuentren por nombre sin depender de una URL fija.
